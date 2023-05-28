@@ -62,7 +62,7 @@ class mpesaController extends Controller
         $curl_response = curl_exec($curl);
         $res=json_decode($curl_response);
         if($res->ResponseCode==0){
-            return response()->json('success',200);
+            return response()->json($res,200);
         }
         else{
             echo 'An error was found. Please try again';
