@@ -33,7 +33,7 @@ class UserController extends Controller
             'email' => request()->email,
             'contact' => $contact,
             'avatar' => 'user.png',
-            'role'=>'Client',
+            'role'=> 'Client',
             'password' => Hash::make(request()->password),
         ]);
         return response()->json('Success',200);
