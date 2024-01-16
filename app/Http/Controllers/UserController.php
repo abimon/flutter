@@ -28,7 +28,7 @@ class UserController extends Controller
         } else {
             $contact = $code . $phone;
         }
-        User::create([
+        $user = User::create([
             'name' => request()->name,
             'email' => request()->email,
             'contact' => $contact,
@@ -36,7 +36,7 @@ class UserController extends Controller
             'role'=> 'Client',
             'password' => Hash::make(request()->password),
         ]);
-        return response()->json('Success',200);
+        return response()->json($user,200);
     }
 
     public function store(Request $request)
