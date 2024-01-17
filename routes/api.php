@@ -9,5 +9,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(UserController::class)->group(function () {
     Route::post('/user/login','index');
     Route::post('/user/create','create');
-    Route::post('/user/avatar','store');
+    Route::post('/user/avatar/{id}','store');
 });
