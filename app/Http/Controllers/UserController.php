@@ -44,7 +44,8 @@ class UserController extends Controller
         $extension=request()->file('avatar')->getClientOriginalExtension();
         $filenametostore='user_'.time().'.'.$extension;   
         $path=request()->file('avatar')->storeAs('public/profile_images', $filenametostore);
-        $user = User::where('id',$id)->update(['avatar'=>$filenametostore]);
+        User::where('id',$id)->update(['avatar'=>$filenametostore]);
+        $user = User::find($id);
         return response()->json($user,200);
 
     }
