@@ -20,17 +20,17 @@ class VideoController extends Controller
 
     public function create($id)
     {
-        $extension=request()->file('video')->getClientOriginalExtension();
-        $filenametostore=uniqid().time().'.'.$extension;   
-        request()->file('video')->storeAs('public/videos', $filenametostore);
-        $video=Video::create([
-            'userId'=>$id,
-            'path'=>$filenametostore,
-            'title'=>request()->title,
-            'category'=>request()->category,
-            'desc'=>request()->description,
-        ]);
-        return response()->json($video,200);
+        // $extension=request()->file('video')->getClientOriginalExtension();
+        // $filenametostore=uniqid().time().'.'.$extension;   
+        // request()->file('video')->storeAs('public/videos', $filenametostore);
+        // $video=Video::create([
+        //     'userId'=>$id,
+        //     'path'=>$filenametostore,
+        //     'title'=>request()->title,
+        //     'category'=>request()->category,
+        //     'desc'=>request()->description,
+        // ]);
+        return response()->json("video",200);
     }
 
     /**
