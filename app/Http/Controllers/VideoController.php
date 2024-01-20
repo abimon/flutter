@@ -15,27 +15,28 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        $videos= Video::all();
+        return $videos;
     }
 
     public function create($id)
     {
-        // $extension=request()->file('video')->getClientOriginalExtension();
-        // $filenametostore=uniqid().time().'.'.$extension;   
-        // request()->file('video')->storeAs('public/videos', $filenametostore);
+
         request()->validate([
             'video' => 'required|mimes:mp4,mov,avi,wmv|max:102400', // 100MB limit, adjust as needed
         ]);
-
-        $videoPath = request()->file('video')->store('videos', 'public');
-        $video=Video::create([
-            'userId'=>$id,
-            'path'=>$videoPath,
-            'title'=>request()->title,
-            'category'=>request()->category,
-            'desc'=>request()->description,
+        $extension = request()->file('video')->getClientOriginalExtension();
+        $filenametostore = uniqid() . time() . '.' . $extension;
+        $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
+        // $videoPath = request()->file('video')->store('videos', 'public');
+        $video = Video::create([
+            'userId' => $id,
+            'path' => $videoPath,
+            'title' => request()->title,
+            'category' => request()->category,
+            'desc' => request()->description,
         ]);
-        return response()->json($video,200);
+        return response()->json($video, 200);
     }
 
     /**
