@@ -51,7 +51,7 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        //
+        return User::all();
     }
     public function edit($id)
     {
