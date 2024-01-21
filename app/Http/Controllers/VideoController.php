@@ -22,6 +22,17 @@ class VideoController extends Controller
     public function create($id)
     {
 
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store($id)
+    {
         request()->validate([
             'video' => 'required|mimes:mp4,mov,avi,wmv|max:10240', // 10MB limit, adjust as needed
             'title'=>'required|string',
@@ -40,17 +51,6 @@ class VideoController extends Controller
             'desc' => request()->description,
         ]);
         return response()->json($video, 200);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
