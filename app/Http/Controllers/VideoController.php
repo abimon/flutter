@@ -20,25 +20,26 @@ class VideoController extends Controller
 
     public function create()
     {
-        
-            $extension = request()->file('video')->getClientOriginalExtension();
-            $filenametostore = 'file_' . time() . '.' . $extension;
-            $path = request()->file('video')->storeAs('public/profile', $filenametostore);
-            if ($path != null) {
-                $video = Video::create([
-                    'userId' => request()->userid,
-                    'path' => $path,
-                    'title' => request()->title,
-                    'category' => request()->category,
-                    'desc' => request()->description,
-                ]);
-                return response()->json($video, 200);
-            } else {
-                return response()->json('Unable to upload file', 408);
-            }
+
+        $extension = request()->file('video')->getClientOriginalExtension();
+        $filenametostore = 'file_' . time() . '.' . $extension;
+        $path = request()->file('video')->storeAs('public/profile', $filenametostore);
+        return $path;
+        if ($path != null) {
+            $video = Video::create([
+                'userId' => request()->userid,
+                'path' => $path,
+                'title' => request()->title,
+                'category' => request()->category,
+                'desc' => request()->description,
+            ]);
+            return response()->json($video, 200);
+        } else {
+            return response()->json('Unable to upload file', 408);
+        }
     }
 
-    
+
     public function store(Request $request)
     {
         //
