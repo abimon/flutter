@@ -14,7 +14,7 @@ Route::controller(UserController::class)->prefix('/user/')->group(function () {
     Route::post('avatar/{id}','store');
 
 });
-Route::controller(VideoController::class)->group(function (){
+Route::controller(VideoController::class)->prefix('/video/')->group(function (){
     Route::post('upload','create');
     Route::get('index','index');
 });
