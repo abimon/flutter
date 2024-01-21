@@ -32,7 +32,6 @@ class VideoController extends Controller
         //     'category'=>'required|string',
         //     'id'=>'required'
         // ]);
-        if (request()->hasFile('video')) {
             $extension = request()->file('video')->getClientOriginalExtension();
             $filenametostore = uniqid() . time() . '.' . $extension;
             $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
@@ -44,9 +43,7 @@ class VideoController extends Controller
                 'desc' => request()->description,
             ]);
             return response()->json($video, 200);
-        } else {
-            return response()->json('No file found', 500);
-        }
+    
     }
 
     public function show($id)
