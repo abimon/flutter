@@ -21,11 +21,16 @@ class VideoController extends Controller
         // return response()->json(['message' => 'Video uploaded successfully ' . $videoPath]);
         if ($path != null) {
             $video = Video::create([
-                'userId' => request()->userid,
+                // 'userId' => request()->userid,
                 'path' => $path,
-                'title' => request()->title,
-                'category' => request()->category,
-                'desc' => request()->description,
+                // 'title' => request()->title,
+                // 'category' => request()->category,
+                // 'desc' => request()->description,
+                'userId' => 1,
+                'title' => 'Tesst title',
+                'category' => 'Test',
+                'desc' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum, eveniet praesentium cupiditate error vel saepe accusantium est labore quibusdam perferendis debitis neque quod. Ut dolorum ex qui, impedit sint praesentium.",
+
             ]);
             return response()->json($video, 200);
         } else {
