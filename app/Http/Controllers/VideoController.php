@@ -27,13 +27,13 @@ class VideoController extends Controller
     public function store()
     {
         // return 'success';
-        request()->validate([
-            'video' => 'required|mimes:mp4,mov,avi,wmv|max:10240', // 10MB limit, adjust as needed
-            'title'=>'required|string',
-            'description'=>'required|string',
-            'category'=>'required|string',
-            'id'=>'required'
-        ]);
+        // request()->validate([
+        //     'video' => 'required|mimes:mp4,mov,avi,wmv|max:10240', // 10MB limit, adjust as needed
+        //     'title'=>'required|string',
+        //     'description'=>'required|string',
+        //     'category'=>'required|string',
+        //     'id'=>'required'
+        // ]);
         // $extension = request()->file('video')->getClientOriginalExtension();
         // $filenametostore = uniqid() . time() . '.' . $extension;
         // $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
