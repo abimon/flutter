@@ -20,7 +20,7 @@ class VideoController extends Controller
 
     public function create()
     {
-        dd(request());
+        // dd(request());
         if (request()->hasFile('video')) {
             $extension = request()->file('video')->getClientOriginalExtension();
             $filenametostore = 'file_' . time() . '.' . $extension;
