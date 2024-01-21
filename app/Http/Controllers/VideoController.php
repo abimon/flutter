@@ -22,7 +22,7 @@ class VideoController extends Controller
     public function create($id)
     {
     }
-    public function store()
+    public function store($id)
     {
         // return 'success';
         // request()->validate([
@@ -37,7 +37,7 @@ class VideoController extends Controller
             $filenametostore = uniqid() . time() . '.' . $extension;
             $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
             $video = Video::create([
-                'userId' => request()->id,
+                'userId' => $id,
                 // 'path' => $videoPath,
                 'title' => request()->title,
                 'category' => request()->category,
