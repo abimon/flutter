@@ -37,8 +37,8 @@ class VideoController extends Controller
             $filenametostore = uniqid() . time() . '.' . $extension;
             $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
             $video = Video::create([
-                'userId' => $id,
-                // 'path' => $videoPath,
+                'userId' => request()->userid,
+                'path' => $videoPath,
                 'title' => request()->title,
                 'category' => request()->category,
                 'desc' => request()->description,
