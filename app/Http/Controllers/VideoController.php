@@ -15,14 +15,12 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos= Video::all();
+        $videos = Video::all();
         return $videos;
     }
 
     public function create($id)
     {
-
-        
     }
     public function store()
     {
@@ -34,17 +32,21 @@ class VideoController extends Controller
         //     'category'=>'required|string',
         //     'id'=>'required'
         // ]);
-        // $extension = request()->file('video')->getClientOriginalExtension();
-        // $filenametostore = uniqid() . time() . '.' . $extension;
-        // $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
-        $video = Video::create([
-            'userId' => request()->id,
-            // 'path' => $videoPath,
-            'title' => request()->title,
-            'category' => request()->category,
-            'desc' => request()->description,
-        ]);
-        return response()->json($video, 200);
+        if (request()->hasFile('video')) {
+            $extension = request()->file('video')->getClientOriginalExtension();
+            $filenametostore = uniqid() . time() . '.' . $extension;
+            $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
+            $video = Video::create([
+                'userId' => request()->id,
+                // 'path' => $videoPath,
+                'title' => request()->title,
+                'category' => request()->category,
+                'desc' => request()->description,
+            ]);
+            return response()->json($video, 200);
+        } else {
+            return response()->json('No file found', 500);
+        }
     }
 
     public function show($id)
