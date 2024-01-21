@@ -8,35 +8,30 @@ use Illuminate\Http\Request;
 
 class VideoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return Video::all();
     }
 
     public function create()
     {
 
-        $extension = request()->file('video')->getClientOriginalExtension();
-        $filenametostore = 'file_' . time() . '.' . $extension;
-        $path = request()->file('video')->storeAs('public/profile', $filenametostore);
-        return $path;
-        if ($path != null) {
-            $video = Video::create([
-                'userId' => request()->userid,
-                'path' => $path,
-                'title' => request()->title,
-                'category' => request()->category,
-                'desc' => request()->description,
-            ]);
-            return response()->json($video, 200);
-        } else {
-            return response()->json('Unable to upload file', 408);
-        }
+        $video = request()->file('video');
+        $videoPath = $video->store('videos', 'public');
+
+        return response()->json(['message' => 'Video uploaded successfully '.$videoPath]);
+        // if ($path != null) {
+        //     $video = Video::create([
+        //         'userId' => request()->userid,
+        //         'path' => $path,
+        //         'title' => request()->title,
+        //         'category' => request()->category,
+        //         'desc' => request()->description,
+        //     ]);
+        //     return response()->json($video, 200);
+        // } else {
+        //     return response()->json('Unable to upload file', 408);
+        // } 
     }
 
 
@@ -44,47 +39,22 @@ class VideoController extends Controller
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
