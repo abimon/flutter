@@ -26,7 +26,7 @@ class VideoController extends Controller
     }
     public function store()
     {
-        return 'success';
+        // return 'success';
         request()->validate([
             'video' => 'required|mimes:mp4,mov,avi,wmv|max:10240', // 10MB limit, adjust as needed
             'title'=>'required|string',
@@ -34,12 +34,12 @@ class VideoController extends Controller
             'category'=>'required|string',
             'id'=>'required'
         ]);
-        $extension = request()->file('video')->getClientOriginalExtension();
-        $filenametostore = uniqid() . time() . '.' . $extension;
-        $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
+        // $extension = request()->file('video')->getClientOriginalExtension();
+        // $filenametostore = uniqid() . time() . '.' . $extension;
+        // $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
         $video = Video::create([
             'userId' => request()->id,
-            'path' => $videoPath,
+            // 'path' => $videoPath,
             'title' => request()->title,
             'category' => request()->category,
             'desc' => request()->description,
