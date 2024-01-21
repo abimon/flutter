@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class VideoController extends Controller
 {
@@ -15,9 +16,8 @@ class VideoController extends Controller
 
     public function create()
     {
-        // dd(request());
+        Log::channel('upload')->info(request());
         $video = request()->file('video');
-        return $video;
         $path = $video->store('videos', 'public');
         // return response()->json(['message' => 'Video uploaded successfully ' . $videoPath]);
         if ($path != null) {
