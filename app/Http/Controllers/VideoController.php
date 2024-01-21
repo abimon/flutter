@@ -21,22 +21,26 @@ class VideoController extends Controller
     public function create()
     {
 
-        // request()->validate([
-        //     'video' => 'required|mimes:mp4,mov,avi,wmv|max:102400', // 100MB limit, adjust as needed
-        // ]);
-        // return request()->file('video');
-        $extension = request()->file('video')->getClientOriginalExtension();
-        $filenametostore = uniqid() . time() . '.' . $extension;
-        // $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
-        $videoPath = request()->file('video')->store('videos', 'public');
-        $video = Video::create([
-            'userId' => request()->userid,
-            'path' => $videoPath,
-            'title' => request()->title,
-            'category' => request()->category,
-            'desc' => request()->description,
-        ]);
-        return response()->json($video, 200);
+        if (request()->hasFile('video')) {
+            $extension = request()->file('video')->getClientOriginalExtension();
+            $filenametostore = uniqid() . time() . '.' . $extension;
+            $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
+            // $videoPath = request()->file('video')->store('videos', 'public');
+            if ($videoPath != null) {
+                $video = Video::create([
+                    'userId' => request()->userid,
+                    'path' => $videoPath,
+                    'title' => request()->title,
+                    'category' => request()->category,
+                    'desc' => request()->description,
+                ]);
+                return response()->json($video, 200);
+            } else {
+                return response()->json('Unable to upload file', 407);
+            }
+        } else {
+            return response()->json('No file found', 407);
+        }
     }
 
     /**
