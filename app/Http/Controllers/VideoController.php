@@ -18,7 +18,7 @@ class VideoController extends Controller
         //
     }
 
-    public function create($id)
+    public function create()
     {
 
         request()->validate([
