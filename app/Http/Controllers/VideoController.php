@@ -22,7 +22,7 @@ class VideoController extends Controller
     public function create($id)
     {
     }
-    public function store($id)
+    public function store()
     {
         // return 'success';
         // request()->validate([
