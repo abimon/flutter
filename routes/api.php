@@ -15,6 +15,6 @@ Route::controller(UserController::class)->prefix('/user/')->group(function () {
 
 });
 Route::controller(VideoController::class)->group(function (){
-    Route::post('upload/{id}','create');
+    Route::post('upload/','create');
     Route::get('index','index');
 });

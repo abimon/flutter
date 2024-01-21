@@ -29,7 +29,7 @@ class VideoController extends Controller
         $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
         // $videoPath = request()->file('video')->store('videos', 'public');
         $video = Video::create([
-            'userId' => $id,
+            'userId' => request()->userid,
             'path' => $videoPath,
             'title' => request()->title,
             'category' => request()->category,
