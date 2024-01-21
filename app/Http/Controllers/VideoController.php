@@ -17,20 +17,20 @@ class VideoController extends Controller
     {
         // dd(request());
         $video = request()->file('video');
-        $videoPath = $video->store('videos', 'public');
-        return response()->json(['message' => 'Video uploaded successfully ' . $videoPath]);
-        // if ($path != null) {
-        //     $video = Video::create([
-        //         'userId' => request()->userid,
-        //         'path' => $path,
-        //         'title' => request()->title,
-        //         'category' => request()->category,
-        //         'desc' => request()->description,
-        //     ]);
-        //     return response()->json($video, 200);
-        // } else {
-        //     return response()->json('Unable to upload file', 408);
-        // } 
+        $path = $video->store('videos', 'public');
+        // return response()->json(['message' => 'Video uploaded successfully ' . $videoPath]);
+        if ($path != null) {
+            $video = Video::create([
+                'userId' => request()->userid,
+                'path' => $path,
+                'title' => request()->title,
+                'category' => request()->category,
+                'desc' => request()->description,
+            ]);
+            return response()->json($video, 200);
+        } else {
+            return response()->json('Unable to upload file', 408);
+        } 
     }
 
 
