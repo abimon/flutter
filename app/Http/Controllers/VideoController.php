@@ -20,8 +20,7 @@ class VideoController extends Controller
 
     public function create()
     {
-        // dd(request());
-        if (request()->hasFile('video')) {
+        
             $extension = request()->file('video')->getClientOriginalExtension();
             $filenametostore = 'file_' . time() . '.' . $extension;
             $path = request()->file('video')->storeAs('public/profile', $filenametostore);
@@ -37,17 +36,9 @@ class VideoController extends Controller
             } else {
                 return response()->json('Unable to upload file', 408);
             }
-        } else {
-            return response()->json('No file found', 407);
-        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //
