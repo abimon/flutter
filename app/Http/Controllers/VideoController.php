@@ -20,16 +20,15 @@ class VideoController extends Controller
 
     public function create()
     {
-
+        dd(request());
         if (request()->hasFile('video')) {
             $extension = request()->file('video')->getClientOriginalExtension();
-            $filenametostore = uniqid() . time() . '.' . $extension;
-            $videoPath = request()->file('video')->storeAs('public/videos', $filenametostore);
-            // $videoPath = request()->file('video')->store('videos', 'public');
-            if ($videoPath != null) {
+            $filenametostore = 'file_' . time() . '.' . $extension;
+            $path = request()->file('video')->storeAs('public/profile', $filenametostore);
+            if ($path != null) {
                 $video = Video::create([
                     'userId' => request()->userid,
-                    'path' => $videoPath,
+                    'path' => $path,
                     'title' => request()->title,
                     'category' => request()->category,
                     'desc' => request()->description,
