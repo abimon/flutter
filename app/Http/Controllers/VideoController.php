@@ -17,6 +17,7 @@ class VideoController extends Controller
     {
         // dd(request());
         $video = request()->file('video');
+        return $video;
         $path = $video->store('videos', 'public');
         // return response()->json(['message' => 'Video uploaded successfully ' . $videoPath]);
         if ($path != null) {
