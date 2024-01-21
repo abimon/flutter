@@ -23,7 +23,10 @@ class VideoController extends Controller
     {
 
         request()->validate([
-            'video' => 'required|mimes:mp4,mov,avi,wmv|max:102400', // 100MB limit, adjust as needed
+            'video' => 'required|mimes:mp4,mov,avi,wmv|max:10240', // 10MB limit, adjust as needed
+            'title'=>'required|string',
+            'description'=>'required|string',
+            'category'=>'required|string'
         ]);
         $extension = request()->file('video')->getClientOriginalExtension();
         $filenametostore = uniqid() . time() . '.' . $extension;
