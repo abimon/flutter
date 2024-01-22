@@ -16,7 +16,7 @@ class VideoController extends Controller
 
     public function create()
     {
-        Log::channel('upload')->info(dd(request()));
+        Log::channel('upload')->info(request());
         $video = request()->file('video');
         $path = $video->store('videos', 'public');
         // return response()->json(['message' => 'Video uploaded successfully ' . $videoPath]);
