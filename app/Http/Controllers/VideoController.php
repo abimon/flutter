@@ -22,7 +22,8 @@ class VideoController extends Controller
         $path=request()->file('video')->storeAs('public/videos', $filenametostore);
         if ($path != null) {
             $video = Video::create([
-                'userId' => request()->userid,
+                // 'userId' => request()->userid,
+                'userId' => 1,
                 'path' => $filenametostore,
                 // 'title' => request()->title,
                 // 'category' => request()->category,
