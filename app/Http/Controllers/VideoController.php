@@ -16,10 +16,10 @@ class VideoController extends Controller
 
     public function create()
     {
-        Log::channel('upload')->info(request());
-        $video = request()->file('video');
-        $path = $video->store('videos', 'public');
-        // return response()->json(['message' => 'Video uploaded successfully ' . $videoPath]);
+        // Log::channel('upload')->info(request());
+        $extension=request()->file('video')->getClientOriginalExtension();
+        $filenametostore='video_'.time().'.'.$extension;   
+        $path=request()->file('video')->storeAs('public/videos', $filenametostore);
         if ($path != null) {
             $video = Video::create([
                 // 'userId' => request()->userid,
@@ -28,9 +28,9 @@ class VideoController extends Controller
                 // 'category' => request()->category,
                 // 'desc' => request()->description,
                 'userId' => 1,
-                'title' => 'Tesst title',
+                'title' => 'Test title',
                 'category' => 'Test',
-                'desc' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum, eveniet praesentium cupiditate error vel saepe accusantium est labore quibusdam perferendis debitis neque quod. Ut dolorum ex qui, impedit sint praesentium.",
+                'desc' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
 
             ]);
             return response()->json($video, 200);
