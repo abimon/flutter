@@ -29,24 +29,24 @@ class UserController extends Controller
             $contact = $code . $phone;
         }
         $user = User::create([
-            'name' => request()->name,
+            'name' => request()->username,
             'email' => request()->email,
             'contact' => $contact,
             'avatar' => 'user.png',
             'role'=> 'Client',
             'password' => Hash::make(request()->password),
         ]);
-        return response()->json($user,200);
+        return response()->json($user,201);
     }
 
-    public function store($id)
+    public function store()
     {
         $extension=request()->file('avatar')->getClientOriginalExtension();
         $filenametostore='user_'.time().'.'.$extension;   
         $path=request()->file('avatar')->storeAs('public/profile', $filenametostore);
-        User::where('id',$id)->update(['avatar'=>$filenametostore]);
-        $user = User::find($id);
-        return response()->json($user,200);
+        // User::where('id',$id)->update(['avatar'=>$filenametostore]);
+        // $user = User::find($id);
+        return response()->json($path,201);
 
     }
     public function show()
