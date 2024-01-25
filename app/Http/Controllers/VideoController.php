@@ -21,11 +21,11 @@ class VideoController extends Controller
         $path=request()->file('video')->storeAs('public/videos', $filenametostore);
         if ($path != null) {
             $video = Video::create([
-                'userId' => 1,
+                'userId' => request()->userId,
                 'path' => $filenametostore,
-                'title' => 'Test title',
-                'category' => 'Test',
-                'desc' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+                'title' => request()->title,
+                'category' => request()->category,
+                'desc' => request()->desc,
 
             ]);
             return response()->json($video, 201);
