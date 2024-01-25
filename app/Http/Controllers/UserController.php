@@ -58,7 +58,7 @@ class UserController extends Controller
     {
         $extension=request()->file('video')->getClientOriginalExtension();
         $filenametostore='video_'.time().'.'.$extension;   
-        $path=request()->file('video')->storeAs('public/videos', $filenametostore);
+        $path=request()->file('video')->storeAs('public/profile', $filenametostore);
         if ($path != null) {
             $video = Video::create([
                 'userId' => 1,
