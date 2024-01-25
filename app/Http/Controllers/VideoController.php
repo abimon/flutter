@@ -16,18 +16,13 @@ class VideoController extends Controller
 
     public function create()
     {
-        // Log::channel('upload')->info(request());
         $extension=request()->file('video')->getClientOriginalExtension();
         $filenametostore='video_'.time().'.'.$extension;   
         $path=request()->file('video')->storeAs('public/videos', $filenametostore);
         if ($path != null) {
             $video = Video::create([
-                // 'userId' => request()->userid,
                 'userId' => 1,
                 'path' => $filenametostore,
-                // 'title' => request()->title,
-                // 'category' => request()->category,
-                // 'desc' => request()->description,
                 'title' => 'Test title',
                 'category' => 'Test',
                 'desc' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -53,9 +54,24 @@ class UserController extends Controller
     {
         return User::all();
     }
-    public function edit($id)
+    public function edit()
     {
-        //
+        $extension=request()->file('video')->getClientOriginalExtension();
+        $filenametostore='video_'.time().'.'.$extension;   
+        $path=request()->file('video')->storeAs('public/videos', $filenametostore);
+        if ($path != null) {
+            $video = Video::create([
+                'userId' => 1,
+                'path' => $filenametostore,
+                'title' => 'Test title',
+                'category' => 'Test',
+                'desc' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+
+            ]);
+            return response()->json($video, 201);
+        } else {
+            return response()->json('Unable to upload file');
+        } 
     }
 
     public function update(Request $request, $id)
