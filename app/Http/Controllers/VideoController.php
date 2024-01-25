@@ -22,20 +22,19 @@ class VideoController extends Controller
         $path=request()->file('video')->storeAs('public/videos', $filenametostore);
         if ($path != null) {
             $video = Video::create([
-                // 'userId' => request()->userid,
-                'path' => $path,
+                'userId' => request()->userid,
+                'path' => $filenametostore,
                 // 'title' => request()->title,
                 // 'category' => request()->category,
                 // 'desc' => request()->description,
-                'userId' => 1,
                 'title' => 'Test title',
                 'category' => 'Test',
                 'desc' => "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
 
             ]);
-            return response()->json($video, 200);
+            return response()->json($video, 201);
         } else {
-            return response()->json('Unable to upload file', 408);
+            return response()->json('Unable to upload file');
         } 
     }
 
