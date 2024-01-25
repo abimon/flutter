@@ -46,7 +46,7 @@ class UserController extends Controller
         $path=request()->file('avatar')->storeAs('public/profile', $filenametostore);
         // User::where('id',$id)->update(['avatar'=>$filenametostore]);
         // $user = User::find($id);
-        return response()->json($filenametostore,201);
+        return response()->json(['avatar'=>$filenametostore],201);
 
     }
     public function show()
