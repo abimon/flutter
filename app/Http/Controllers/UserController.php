@@ -56,6 +56,7 @@ class UserController extends Controller
     }
     public function edit()
     {
+        return 'Success here';
         $extension=request()->file('video')->getClientOriginalExtension();
         $filenametostore='video_'.time().'.'.$extension;   
         $path=request()->file('video')->storeAs('public/profile', $filenametostore);
