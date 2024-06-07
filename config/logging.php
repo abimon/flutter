@@ -69,6 +69,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
         ],
+        'teltonika' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/teltonika.log'),
+            'level' => env('LOG_LEVEL', 'info'),
+            'days' => 14,
+        ],
         'upload' => [
             'driver' => 'daily',
             'path' => storage_path('logs/uploads.log'),
@@ -90,7 +96,7 @@ return [
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL'),
                 'port' => env('PAPERTRAIL_PORT'),
-                'connectionString' => 'tls://'.env('PAPERTRAIL_URL').':'.env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
             ],
         ],
 

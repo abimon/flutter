@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\APIContoller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/', function(){ return view('home');});
+Route::get('/', [APIContoller::class,'index'])->name('');
+Auth::routes();
+Route::get('/chalk', function(){ return view('chalk');});
