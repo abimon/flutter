@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [APIContoller::class,'index'])->name('');
 Auth::routes();
 Route::get('/chalk', function(){ return view('chalk');});
+Route::get('/treasure', function(){ return view('treasure');});
