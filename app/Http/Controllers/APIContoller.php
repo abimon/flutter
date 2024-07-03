@@ -10,7 +10,7 @@ class APIContoller extends Controller
 {
     public function index()
     {
-        Log::channel("teltonika")->info(json_encode(request()));
+        Log::channel("teltonika")->info(json_encode([request('sensor'),request('value1'),request('value2'),request('value3'),request('api_key')]));
     }
     public function create()
     {
