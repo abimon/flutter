@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Route;
 //         Route::get('');
 //     });
 // });
-Route::post('/esp32', [APIContoller::class,'index']);
+Route::post('/', [APIContoller::class,'index']);
