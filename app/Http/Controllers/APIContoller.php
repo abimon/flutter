@@ -11,6 +11,7 @@ class APIContoller extends Controller
     public function index()
     {
         Log::channel("teltonika")->info(json_encode([request('sensor'),request('value1'),request('value2'),request('value3'),request('api_key')]));
+        return response()->json('success',200);
     }
     public function create()
     {
