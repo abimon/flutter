@@ -17,27 +17,27 @@ class DeviceController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store()
     {
         //
     }
 
-    public function show(Device $device)
+    public function show()
     {
         //
     }
 
-    public function edit(Device $device)
+    public function edit()
     {
         //
     }
 
-    public function update(Request $request, Device $device)
+    public function update()
     {
         //
     }
 
-    public function destroy(Device $device)
+    public function destroy()
     {
         //
     }

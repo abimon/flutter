@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Device;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -10,8 +11,6 @@ class APIContoller extends Controller
 {
     public function index()
     {
-        Log::channel("teltonika")->info(json_encode([request('sensor'),request('value1'),request('value2'),request('value3'),request('api_key')]));
-        return response()->json('success',200);
     }
     public function create()
     {
@@ -19,7 +18,14 @@ class APIContoller extends Controller
     }
     public function store(Request $request)
     {
-        //
+        Device::create([
+            'user_id'=>request('user_id'),
+            'device_mac'=>request('device_mac'),
+            'device_name'=>request('device_name'),
+            'start'=>request('start'),
+            'end'=>request('end'),
+            'isOn'=>request('isOn')
+        ]);
     }
     public function show($id)
     {

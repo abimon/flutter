@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\APIContoller;
+use App\Http\Controllers\DeviceController;
 use Illuminate\Support\Facades\Route;
 
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::controller(APIContoller::class)->group(function () {
-//         Route::get('');
-//     });
-// });
-Route::post('/', [APIContoller::class,'index']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resources([
+        'device'=>DeviceController::class,
+    ]);
+});
