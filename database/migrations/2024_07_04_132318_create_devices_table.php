@@ -13,8 +13,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('device_mac');
             $table->string('device_name')->default('Electrolite');
-            $table->timestamp('start');
-            $table->timestamp('end');
+            $table->timestamp('start')->nullable();
+            $table->timestamp('end')->nullable();
             $table->boolean('isOn');
             $table->timestamps();
         });
