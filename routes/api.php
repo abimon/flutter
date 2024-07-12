@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(UserController::class)->prefix('/user')->group(function () {
-    Route::get('/login', 'create');
+    Route::post('/login', 'create');
     Route::post('/register', 'store');
     Route::get('/show/{id}','show');
     Route::put('/update/{id}', 'update');
