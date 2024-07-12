@@ -18,9 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('contact');
-            $table->string('avatar')->default('user.png');
-            $table->string('category')->nullable();
-            $table->string('role');
+            $table->string('role')->default('User');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
