@@ -16,4 +16,7 @@ class Device extends Model
         'end',
         'isOn'
     ];
+    public function owner(){
+        return $this->belongsTo(User::class, 'id', 'user_id');
+    }
 }

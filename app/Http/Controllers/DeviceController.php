@@ -11,7 +11,23 @@ class DeviceController extends Controller
 {
     public function index()
     {
-        //
+        $devices=[];
+        $dvices = Device::all();
+        foreach ($dvices as $device) {
+            array_push($devices,[
+                'owner'=>$device->owner->name,
+                'id'=>$device->id,
+                'mac'=>$device->device_mac,
+                'name'=>$device->device_name,
+                'status'=>$device->isOn,
+                'updated_at'=>$device->updated_at
+            ]);
+        }
+        return response()->json([
+            'devices'=>$devices,
+            'status' => true,
+            'message' => 'Device Created Successfully',
+        ], 200);
     }
     public function create()
     {
@@ -24,10 +40,8 @@ class DeviceController extends Controller
             $validateUser = Validator::make(
                 request()->all(),
                 [
-                    'name' => 'required|string|unique:users,name',
-                    'email' => 'required|email|unique:users,email',
-                    'password' => 'required|min:8',
-                    'contact' => 'required|min:9',
+                    'device_mac' => 'required|string|unique:devices,device_mac',
+                    'device_name' => 'required|string',
                 ]
             );
 
@@ -39,7 +53,7 @@ class DeviceController extends Controller
                 ], 401);
             }
 
-            $device=Device::create([
+            Device::create([
                 'user_id'=>Auth()->user()->id,
                 'device_mac'=>request('device_mac'),
                 'device_name'=>request('device_name'),
@@ -49,10 +63,8 @@ class DeviceController extends Controller
             ]);
 
             return response()->json([
-                'device' => $device,
                 'status' => true,
                 'message' => 'Device Created Successfully',
-                'token' => request()->createToken("API TOKEN")->plainTextToken
             ], 200);
         } catch (\Throwable $th) {
             return response()->json([
@@ -63,14 +75,36 @@ class DeviceController extends Controller
         
     }
 
-    public function show()
+    public function show($id)
     {
-        //
+        $devices=[];
+        $dvices = Device::where('user_id',$id)->get();
+        foreach ($dvices as $device) {
+            array_push($devices,[
+                'owner'=>$device->owner->name,
+                'id'=>$device->id,
+                'mac'=>$device->device_mac,
+                'name'=>$device->device_name,
+                'status'=>$device->isOn,
+                'updated_at'=>$device->updated_at
+            ]);
+        }
+        return response()->json([
+            'devices'=>$devices,
+            'status' => true,
+            'message' => 'Device created Successfully',
+        ], 200);
     }
 
-    public function edit()
+    public function edit($id)
     {
-        //
+        $device = Device::findOrFail($id);
+        $device->isOn = !($device->isOn);
+        $device->update();
+        return response()->json([
+            'status' => true,
+            'message' => 'State updated successfully',
+        ], 200);
     }
 
     public function update()
