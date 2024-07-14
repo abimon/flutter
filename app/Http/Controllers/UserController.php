@@ -34,6 +34,7 @@ class UserController extends Controller
 
             if(!Auth::attempt(request()->only(['email', 'password']))){
                 return response()->json([
+                    'user'=>Auth()->user(),
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',
                 ], 401);
