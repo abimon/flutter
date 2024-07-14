@@ -82,6 +82,7 @@ class UserController extends Controller
                 'contact'=>request('contact'),
                 'email'=>request('email'),
                 'password'=>request('password'),
+                'role'=>'User'
             ]);
 
             return response()->json([
@@ -97,13 +98,6 @@ class UserController extends Controller
             ], 500);
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $user = User::findOrFail($id);
