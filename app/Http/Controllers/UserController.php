@@ -34,7 +34,6 @@ class UserController extends Controller
 
             if(!Auth::attempt(request()->only(['email', 'password']))){
                 return response()->json([
-                    'user'=>Auth()->user(),
                     'status' => false,
                     'message' => 'Email & Password does not match with our record.',
                 ], 401);
@@ -45,6 +44,7 @@ class UserController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Logged In Successfully',
+                'user'=>Auth()->user(),
                 'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
