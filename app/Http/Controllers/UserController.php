@@ -103,9 +103,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return response()->json($user,200);
     }
-    public function edit($id)
+    public function getUser()
     {
-        
+        return response()->json(['users'=>Auth()->user()],200);
     }
 
     public function update(Request $request, $id)
