@@ -12,19 +12,21 @@ class DeviceController extends Controller
     public function index()
     {
         $devices = collect();
-        
+
         $dvices = Device::all();
         foreach ($dvices as $device) {
-            $dvs = collect(['owner'=>$device->owner->name,
-        'id'=>$device->id,
-        'mac'=>$device->device_mac,
-        'name'=>$device->device_name,
-        'status'=>$device->isOn,
-        'updated_at'=>($device->updated_at)->diffForHumans()]);
+            $dvs = collect([
+                'owner' => $device->owner->name,
+                'id' => $device->id,
+                'mac' => $device->device_mac,
+                'name' => $device->device_name,
+                'status' => $device->isOn,
+                'updated_at' => ($device->updated_at)->diffForHumans()
+            ]);
             $devices->push($dvs);
         }
         return response()->json([
-            'devices'=>$devices,
+            'devices' => $devices,
             'status' => true,
         ], 200);
     }
@@ -53,12 +55,12 @@ class DeviceController extends Controller
             }
 
             Device::create([
-                'user_id'=>Auth()->user()->id,
-                'device_mac'=>request('device_mac'),
-                'device_name'=>request('device_name'),
-                'start'=>request('start'),
-                'end'=>request('end'),
-                'isOn'=>false
+                'user_id' => Auth()->user()->id,
+                'device_mac' => request('device_mac'),
+                'device_name' => request('device_name'),
+                'start' => request('start'),
+                'end' => request('end'),
+                'isOn' => false
             ]);
 
             return response()->json([
@@ -71,31 +73,38 @@ class DeviceController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
-        
     }
 
     public function show($id)
     {
         $devices = collect();
-        $dvices = Device::where('user_id',$id)->get();
+        $dvices = Device::where('user_id', $id)->get();
         foreach ($dvices as $device) {
-            $dvs = collect(['owner'=>$device->owner->name,
-        'id'=>$device->id,
-        'mac'=>$device->device_mac,
-        'name'=>$device->device_name,
-        'status'=>$device->isOn,
-        'updated_at'=>($device->updated_at)->diffForHumans()]);
+            $dvs = collect([
+                'owner' => $device->owner->name,
+                'id' => $device->id,
+                'mac' => $device->device_mac,
+                'name' => $device->device_name,
+                'status' => $device->isOn,
+                'updated_at' => ($device->updated_at)->diffForHumans()
+            ]);
             $devices->push($dvs);
         }
         return response()->json([
-            'devices'=>$devices,
+            'devices' => $devices,
             'status' => true,
         ], 200);
     }
 
-    public function edit($id,$value)
+    public function edit($id)
     {
-        $device = Device::where('device_mac',$id)->update(['isOn'=>$value]);
+        $device = Device::where('device_mac', $id)->first();
+        if ($device->isOn == 1) {
+            $device->isOn = 0;
+        } else {
+            $device->isOn = 1;
+        }
+        $device->update();
         return response()->json([
             'status' => true,
             'message' => 'State updated successfully',
