@@ -93,11 +93,9 @@ class DeviceController extends Controller
         ], 200);
     }
 
-    public function edit($id)
+    public function edit($id,$value)
     {
-        $device = Device::findOrFail($id);
-        $device->isOn = !($device->isOn);
-        $device->update();
+        $device = Device::where('device_mac',$id)->update(['isOn'=>$value]);
         return response()->json([
             'status' => true,
             'message' => 'State updated successfully',
