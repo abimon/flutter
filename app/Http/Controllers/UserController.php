@@ -105,7 +105,7 @@ class UserController extends Controller
     }
     public function getUser()
     {
-        return response()->json(['users'=>Auth()->user()],200);
+        return response()->json(['user'=>Auth()->user()],200);
     }
 
     public function update(Request $request, $id)
