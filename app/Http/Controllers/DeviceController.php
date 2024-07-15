@@ -26,7 +26,6 @@ class DeviceController extends Controller
         return response()->json([
             'devices'=>$devices,
             'status' => true,
-            'message' => 'Device Created Successfully',
         ], 200);
     }
     public function create()
