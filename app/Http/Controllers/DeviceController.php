@@ -11,20 +11,20 @@ class DeviceController extends Controller
 {
     public function index()
     {
-        $devices=[];
+        $devices = [];
+        
         $dvices = Device::all();
         foreach ($dvices as $device) {
-            array_push($devices,[
-                'owner'=>$device->owner->name,
-                'id'=>$device->id,
-                'mac'=>$device->device_mac,
-                'name'=>$device->device_name,
-                'status'=>$device->isOn,
-                'updated_at'=>$device->updated_at
-            ]);
+            $dvs = collect(['owner'=>$device->owner->name,
+        'id'=>$device->id,
+        'mac'=>$device->device_mac,
+        'name'=>$device->device_name,
+        'status'=>$device->isOn,
+        'updated_at'=>$device->updated_at]);
+            // array_push($devices,$dvs);
         }
         return response()->json([
-            'devices'=>$devices,
+            'devices'=>$dvs,
             'status' => true,
         ], 200);
     }
