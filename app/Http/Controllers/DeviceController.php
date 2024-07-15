@@ -11,7 +11,7 @@ class DeviceController extends Controller
 {
     public function index()
     {
-        $devices = [];
+        $devices = collect();
         
         $dvices = Device::all();
         foreach ($dvices as $device) {
@@ -21,10 +21,10 @@ class DeviceController extends Controller
         'name'=>$device->device_name,
         'status'=>$device->isOn,
         'updated_at'=>$device->updated_at]);
-            array_push($devices,$dvs);
+            $devices->push($dvs);
         }
         return response()->json([
-            'devices'=>$dvs,
+            'devices'=>$devices,
             'status' => true,
         ], 200);
     }
