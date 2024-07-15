@@ -15,7 +15,7 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
 });
 Route::controller(DeviceController::class)->prefix('/device')->group(function () {
     Route::get('/index', 'index')->middleware('auth:sanctum');
-    Route::get('/edit/{id}', 'edit')->middleware('auth:sanctum');
+    Route::get('/edit/{id}', 'edit');
     Route::get('/get/{id}', 'getDevice');
     Route::post('/store', 'store')->middleware('auth:sanctum');
     Route::get('/show/{id}', 'show')->middleware('auth:sanctum');
