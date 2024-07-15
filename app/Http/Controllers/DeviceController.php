@@ -98,7 +98,7 @@ class DeviceController extends Controller
     public function getDevice($id)
     {
         $device = Device::where('device_mac', $id)->first();
-        return $device;
+        return $device->isOn;
     }
     public function edit($id)
     {
