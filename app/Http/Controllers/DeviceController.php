@@ -76,22 +76,20 @@ class DeviceController extends Controller
 
     public function show($id)
     {
-        $devices=[];
+        $devices = collect();
         $dvices = Device::where('user_id',$id)->get();
         foreach ($dvices as $device) {
-            array_push($devices,[
-                'owner'=>$device->owner->name,
-                'id'=>$device->id,
-                'mac'=>$device->device_mac,
-                'name'=>$device->device_name,
-                'status'=>$device->isOn,
-                'updated_at'=>$device->updated_at
-            ]);
+            $dvs = collect(['owner'=>$device->owner->name,
+        'id'=>$device->id,
+        'mac'=>$device->device_mac,
+        'name'=>$device->device_name,
+        'status'=>$device->isOn,
+        'updated_at'=>$device->updated_at]);
+            $devices->push($dvs);
         }
         return response()->json([
             'devices'=>$devices,
             'status' => true,
-            'message' => 'Device created Successfully',
         ], 200);
     }
 
