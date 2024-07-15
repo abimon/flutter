@@ -58,7 +58,7 @@ class DeviceController extends Controller
                 'device_name'=>request('device_name'),
                 'start'=>request('start'),
                 'end'=>request('end'),
-                'isOn'=>request('isOn')
+                'isOn'=>false
             ]);
 
             return response()->json([
