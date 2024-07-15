@@ -20,7 +20,7 @@ class DeviceController extends Controller
         'mac'=>$device->device_mac,
         'name'=>$device->device_name,
         'status'=>$device->isOn,
-        'updated_at'=>$device->updated_at]);
+        'updated_at'=>($device->updated_at)->diffForHumans()]);
             $devices->push($dvs);
         }
         return response()->json([
