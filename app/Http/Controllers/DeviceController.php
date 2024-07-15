@@ -95,7 +95,11 @@ class DeviceController extends Controller
             'status' => true,
         ], 200);
     }
-
+    public function getDevice($id)
+    {
+        $device = Device::where('device_mac', $id)->first();
+        return $device;
+    }
     public function edit($id)
     {
         $device = Device::where('device_mac', $id)->first();

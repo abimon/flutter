@@ -17,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(DeviceController::class)->prefix('/device')->group(function () {
         Route::get('/index', 'index');
         Route::get('/edit/{id}', 'edit');
+        Route::get('/get/{id}', 'getDevice');
         Route::post('/store', 'store');
         Route::get('/show/{id}', 'show');
         Route::put('/update/{id}', 'update');
