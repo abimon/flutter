@@ -11,7 +11,7 @@ class DustbinController extends Controller
 
     public function index()
     {
-        $dustbins = Dustbin::join('users','users.id','=','dustbins.user_id')->select('dustbins.*','users.name')->get();
+        $dustbins = Dustbin::join('users','users.id','=','dustbins.user_id')->select('dustbins.*','users.name',)->get();
         return $dustbins;
     }
 
@@ -34,8 +34,8 @@ class DustbinController extends Controller
 
     public function show($id)
     {
-        $dustbins = Dustbin::join('users','users.id','=','dustbins.user_id')->select('dustbins.*','users.name','users.id as uid')->get();
-        return $dustbins->where('uid',$id);
+        $dustbins = Dustbin::join('users','users.id','=','dustbins.user_id')->select('dustbins.*','users.name',)->get();
+        return $dustbins;
     }
 
     public function edit(Dustbin $dustbin)

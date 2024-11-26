@@ -63,8 +63,8 @@ class PickupController extends Controller
 
     public function show($id)
     {
-        $picks = User::findOrFail($id)->dustbins;
-        return $picks;
+        $picks = Pickup::join('dustbins', 'dustbins.id', 'pickups.dustbin_id')->join('users','users.id','=','dustbins.user_id')->select('dustbins.*','users.name','pickups.date','pickups.location','users.id as uid')->get();
+        return $picks->where('uid',$id);
     }
 
     public function edit(Pickup $pickup)
