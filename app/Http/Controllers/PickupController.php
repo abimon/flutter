@@ -63,7 +63,7 @@ class PickupController extends Controller
 
     public function show($id)
     {
-        $picks = User::findOrFail($id)->dustbins->pickups;
+        $picks = User::findOrFail($id)->dustbins;
         return $picks;
     }
 
