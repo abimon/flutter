@@ -14,4 +14,8 @@ class Pickup extends Model
         "time",
         "location",
     ];
+    public function pickup()
+    {
+        return $this->hasMany(Pickup::class,'dustbin_id','id');
+    }
 }

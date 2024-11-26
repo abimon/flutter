@@ -38,4 +38,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function dustbins()
+    {
+        return $this->hasMany(Dustbin::class,'user_id','id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pickup;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -60,9 +61,10 @@ class PickupController extends Controller
         }
     }
 
-    public function show(Pickup $pickup)
+    public function show($id)
     {
-        //
+        $picks = User::findOrFail($id)->dustbins->pickups;
+        return $picks;
     }
 
     public function edit(Pickup $pickup)
