@@ -25,5 +25,5 @@ Route::controller(DustbinController::class)->prefix('/dustbin')->group(function 
 Route::controller(PickupController::class)->prefix('/pickup')->group(function () {
     Route::get('/', 'index');
     Route::post('/store', 'store');
-    Route::post('/show/{id}', 'store');
+    Route::get('/show/{id}', 'store');
  });
