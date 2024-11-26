@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Pickup extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "dustbin_id",
+        "date",
+        "time",
+        "location",
+    ];
 }

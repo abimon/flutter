@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DustbinController;
+use App\Http\Controllers\PickupController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,7 @@ Route::controller(DustbinController::class)->prefix('/dustbin')->group(function 
     Route::put('/update/{id}', 'update')->middleware('auth:sanctum');
     Route::delete('/delete/{id}', 'destroy')->middleware('auth:sanctum');
 });
+Route::controller(PickupController::class)->prefix('/pickup')->group(function () {
+    Route::get('/', 'index');
+    Route::get('/store', 'store');
+ });
