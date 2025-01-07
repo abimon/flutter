@@ -14,4 +14,7 @@ class Dustbin extends Model
         'level',
         'depth'
     ];
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

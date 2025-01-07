@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('date');
             $table->string('time');
             $table->string('location');
+            $table->boolean('isPaid')->false();
             $table->timestamps();
             $table->foreign('dustbin_id')->references('id')->on('dustbins')->cascadeOnDelete();
         });

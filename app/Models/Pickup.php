@@ -13,9 +13,9 @@ class Pickup extends Model
         "date",
         "time",
         "location",
+        "isPaid"
     ];
-    public function pickup()
-    {
-        return $this->hasMany(Pickup::class,'dustbin_id','id');
+    public function bin(){
+        return $this->belongsTo(Dustbin::class);
     }
 }
