@@ -47,7 +47,7 @@ class DustbinController extends Controller
     public function update($dustbin_no,$level)
     {
         
-        $bin=Dustbin::where('dustbin_no', $dustbin_no)->get();
+        $bin=Dustbin::where('dustbin_no', $dustbin_no)->first();
         $bin->level = ($level / $bin->depth) * 100;
         $bin->update();
         return response()->json(['message'=>"Level updated successfully"],200);
