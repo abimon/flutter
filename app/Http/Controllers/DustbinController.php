@@ -26,6 +26,7 @@ class DustbinController extends Controller
             "user_id"=>request('user_id'),
             "dustbin_no"=>request('dustbin_no'),
             "level"=>request('level'),
+            "depth"=>request('depth'),
         ]);
         return response()->json([
             'message' => 'Dustbin added successfully'
@@ -45,9 +46,10 @@ class DustbinController extends Controller
 
     public function update($dustbin_no,$level)
     {
-        Dustbin::where('dustbin_no', $dustbin_no)->update([
-            'level' => $level
-        ]);
+        
+        $bin=Dustbin::where('dustbin_no', $dustbin_no)->get();
+        $bin->level = ($level / $bin->depth) * 100;
+        $bin->update();
         return response()->json(['message'=>"Level updated successfully"],200);
     }
 

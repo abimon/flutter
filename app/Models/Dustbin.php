@@ -12,5 +12,6 @@ class Dustbin extends Model
         'user_id',
         'dustbin_no',
         'level',
+        'depth'
     ];
 }
