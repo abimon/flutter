@@ -47,6 +47,7 @@ class PickupController extends Controller
                 'date'=>request('date'),
                 'time'=>request('time'),
                 'location'=>request('location'),
+                "isPaid"=>false,
             ]);
 
             return response()->json([
