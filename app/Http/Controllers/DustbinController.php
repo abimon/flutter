@@ -13,7 +13,7 @@ class DustbinController extends Controller
     public function index()
     {   
         $id=Auth()->user()->id;
-        $dustbins = Dustbin::wheere('users.id',$id)->join('users','users.id','=','dustbins.user_id')->select('dustbins.*','users.name',)->get();
+        $dustbins = Dustbin::where('users.id',$id)->join('users','users.id','=','dustbins.user_id')->select('dustbins.*','users.name',)->get();
         return $dustbins;
     }
 
