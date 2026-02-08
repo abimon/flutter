@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dustbin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DustbinController extends Controller
 {
@@ -24,7 +25,7 @@ class DustbinController extends Controller
     public function store(Request $request)
     {
         Dustbin::create([
-            "user_id"=>request('user_id'),
+            "user_id"=>Auth::user()->id,
             "dustbin_no"=>request('dustbin_no'),
             "level"=>request('level'),
             "depth"=>request('depth'),
