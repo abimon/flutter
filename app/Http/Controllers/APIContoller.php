@@ -18,14 +18,7 @@ class APIContoller extends Controller
     }
     public function store(Request $request)
     {
-        Device::create([
-            'user_id'=>request('user_id'),
-            'device_mac'=>request('device_mac'),
-            'device_name'=>request('device_name'),
-            'start'=>request('start'),
-            'end'=>request('end'),
-            'isOn'=>request('isOn')
-        ]);
+        
     }
     public function show($id)
     {

@@ -20,7 +20,7 @@ Route::controller(DustbinController::class)->prefix('/dustbin')->group(function 
     Route::get('/edit/{id}', 'edit');
     Route::post('/store', 'store');
     Route::get('/show/{id}', 'show')->middleware('auth:sanctum');
-    Route::post('/update/{dustbin_no}/{level}', 'update');
+    Route::post('/update', 'update');
     Route::delete('/delete/{id}', 'destroy')->middleware('auth:sanctum');
 });
 Route::controller(PickupController::class)->prefix('/pickup')->group(function () {

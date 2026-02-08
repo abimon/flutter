@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/', [APIContoller::class,'index']);
+Route::get('/', [APIContoller::class,'index']);
 Auth::routes();
 Route::get('/chalk', function(){ return view('chalk');});
 Route::get('/treasure', function(){ return view('treasure');});
