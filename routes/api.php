@@ -16,7 +16,7 @@ Route::controller(UserController::class)->prefix('/user')->group(function () {
     Route::delete('/delete/{id}', 'destroy')->middleware('auth:sanctum');
 });
 Route::controller(DustbinController::class)->prefix('/dustbin')->group(function () {
-    Route::get('/index', 'index');
+    Route::get('/index', 'index')->middleware('auth:sanctum');
     Route::get('/edit/{id}', 'edit');
     Route::post('/store', 'store')->middleware('auth:sanctum');
     Route::get('/show/{id}', 'show')->middleware('auth:sanctum');
