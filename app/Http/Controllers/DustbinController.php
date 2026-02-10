@@ -52,7 +52,7 @@ class DustbinController extends Controller
         $bin=Dustbin::where('dustbin_no', request('dustbin_no'))->first();
         $bin->level = ceil(((($bin->depth - request('level') )/ $bin->depth) * 100));
         $bin->update();
-        return response()->json(['message'=>"Level updated successfully"],200);
+        return response()->json(['message'=>"Level updated successfully with ". request('level').' from the device.'],200);
     }
 
     public function destroy(Dustbin $dustbin)
