@@ -13,7 +13,7 @@ class PickupController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role == 'admin') {
+        if (Auth::user()->role == 'Admin') {
             $picks = Pickup::orderBy('pickups.created_at', 'desc')->join('dustbins', 'dustbins.id', 'pickups.dustbin_id')->join('users', 'users.id', '=', 'dustbins.user_id')->select('dustbins.*', 'users.name', 'pickups.date', 'pickups.location', 'pickups.isPaid','pickups.tracking_id as tID')->get();
         } else {
             $id = Auth()->user()->id;
@@ -93,7 +93,20 @@ class PickupController extends Controller
     }
     public function update(Request $request, Pickup $pickup)
     {
-        //
+        $pickup = Pickup::where('tracking_id', request('tracking_id'))->first();
+        if ($pickup) {
+            if(request('isPicked')!=null){$pickup->isPicked = request('isPicked');}
+            $pickup->update();
+            return response()->json([
+                'status' => true,
+                'message' => 'Pick-up updated successfully',
+            ], 200);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Pick-up not found',
+            ], 401);
+        }
     }
 
     public function destroy(Pickup $pickup)

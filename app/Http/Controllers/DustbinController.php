@@ -12,7 +12,7 @@ class DustbinController extends Controller
 
     public function index()
     {
-        if(Auth::user()->role == 'admin'){
+        if(Auth::user()->role == 'Admin'){
             $dustbins = Dustbin::join('users', 'users.id', '=', 'dustbins.user_id')->select('dustbins.*', 'users.name',)->get();
         }else{
             $id = Auth()->user()->id;
@@ -58,7 +58,7 @@ class DustbinController extends Controller
     {
 
         $bin = Dustbin::where('dustbin_no', request('dustbin_no'))->first();
-        $bin->level = ceil(((($bin->depth - request('level')) / $bin->depth) * 100));
+        if(request('level')!=null){$bin->level = ceil(((($bin->depth - request('level')) / $bin->depth) * 100));
         $bin->update();
         if ($bin->level >= 80) {
             $phone = $bin->user->phone;
@@ -68,7 +68,7 @@ class DustbinController extends Controller
             $phone = $bin->user->phone;
             $message = "Waste-bin no: " . $bin->dustbin_no . " is almost full. Please check it and schedule its pickup.";
             $this->sendSMS($phone, $message);
-        }
+        }}
 
         return response()->json(['message' => "Level updated successfully with " . request('level') . ' from the device.'], 200);
     }
