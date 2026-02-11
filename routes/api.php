@@ -24,11 +24,7 @@ Route::controller(DustbinController::class)->prefix('/dustbin')->group(function 
     Route::delete('/delete/{id}', 'destroy')->middleware('auth:sanctum');
 });
 Route::controller(PickupController::class)->prefix('/pickup')->group(function () {
-    Route::get('/', 'index');
-    Route::post('/store', 'store');
-    Route::get('/show/{id}', 'show');
+    Route::get('/', 'index')->middleware('auth:sanctum');
+    Route::post('/store', 'store')->middleware('auth:sanctum');
+    Route::get('/show/{id}', 'show')->middleware('auth:sanctum');
  });
-//  Route::controller(PaymentController::class)->prefix('/payments')->group(function () {
-//     Route::post('/save', 'save');
-//     Route::get('/pay/{id}/{bin_id}', 'pay');
-//  });
