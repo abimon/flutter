@@ -14,10 +14,10 @@ class PickupController extends Controller
     public function index()
     {
         if(Auth::user()->role == 'admin') {
-            $picks = Pickup::orderBy('pickups.created_at','desc')->join('dustbins', 'dustbins.id', 'pickups.dustbin_id')->join('users', 'users.id', '=', 'dustbins.user_id')->select('dustbins.*', 'users.name', 'pickups.date', 'pickups.location')->get();
+            $picks = Pickup::orderBy('pickups.created_at','desc')->join('dustbins', 'dustbins.id', 'pickups.dustbin_id')->join('users', 'users.id', '=', 'dustbins.user_id')->select('dustbins.*', 'users.name', 'pickups.date', 'pickups.location','pickups.isPaid')->get();
         } else {
             $id = Auth()->user()->id;
-            $picks = Pickup::orderBy('pickups.created_at','desc')->where('users.id', $id)->join('dustbins', 'dustbins.id', 'pickups.dustbin_id')->join('users', 'users.id', '=', 'dustbins.user_id')->select('dustbins.*', 'users.name', 'pickups.date', 'pickups.location')->get();
+            $picks = Pickup::orderBy('pickups.created_at','desc')->where('users.id', $id)->join('dustbins', 'dustbins.id', 'pickups.dustbin_id')->join('users', 'users.id', '=', 'dustbins.user_id')->select('dustbins.*', 'users.name', 'pickups.date', 'pickups.location','pickups.isPaid')->get();
         }
         return response()->json([
             'status' => true,
