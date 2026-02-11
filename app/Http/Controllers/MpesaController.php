@@ -39,7 +39,7 @@ class MpesaController extends Controller
         $phne = $res['Body']['stkCallback']['CallbackMetadata']['Item'][4]['Value'];
         Mpesa::create([
             'TransactionType' => 'Paybill',
-            'pickup_id' => $id,
+            'tracking_id' => $id,
             'TransAmount' => $amount,
             'MpesaReceiptNumber' => $TransactionId,
             'TransactionDate' => date('d-m-Y'),
@@ -87,7 +87,7 @@ class MpesaController extends Controller
 
     public function store()
     {
-        $res=$this->Pay(2, request('contact'), request('tracking_id'));
+        $res=$this->Pay(1, request('contact'), request('tracking_id'));
         return response()->json([
             'status' => true,
             'message' => 'Payment initiated successfully',
