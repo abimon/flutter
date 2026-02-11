@@ -66,7 +66,7 @@ class MpesaController extends Controller
             'PartyA' => $contact,
             'PartyB' => env('MPESA_SHORT_CODE'),
             'PhoneNumber' => $contact,
-            'CallBackURL' => 'https://usalama.apektechinc.com/api/pickup/callback/' . $id,
+            'CallBackURL' => 'https://api.apektechinc.com/api/mpesa/callback/' . $id,
             'AccountReference' => 'Pickup Declaration Fee',
             'TransactionDesc' => 'Pickup Declaration Fee',
         ];
