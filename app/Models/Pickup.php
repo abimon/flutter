@@ -10,6 +10,7 @@ class Pickup extends Model
     use HasFactory;
     protected $fillable = [
         "dustbin_id",
+        "tracking_id",
         "date",
         "time",
         "location",
