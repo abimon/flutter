@@ -75,10 +75,17 @@ class DustbinController extends Controller
 
     public function destroy($id)
     {
-        Dustbin::destroy($id);
-        return response()->json([
-            'message' => 'Dustbin deleted successfully'
-        ], 200);
+        if (!Auth::attempt(request()->only(['password']))) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Password does not match with our record.',
+            ], 401);
+        }else{
+            Dustbin::destroy($id);
+            return response()->json([
+                'message' => 'Dustbin deleted successfully'
+            ], 200);
+        }
     }
     public function sendSMS($phone, $message)
     {
