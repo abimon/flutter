@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DustbinController;
+use App\Http\Controllers\MpesaController;
 // use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PickupController;
 use App\Http\Controllers\UserController;
@@ -28,3 +29,7 @@ Route::controller(PickupController::class)->prefix('/pickup')->group(function ()
     Route::post('/store', 'store')->middleware('auth:sanctum');
     Route::get('/show/{id}', 'show')->middleware('auth:sanctum');
  });
+Route::controller(MpesaController::class)->prefix('/mpesa')->group(function () {
+    Route::post('/store', 'store');
+    Route::post('/callback/{id}', 'callback');
+});

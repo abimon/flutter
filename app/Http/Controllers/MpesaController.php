@@ -87,10 +87,11 @@ class MpesaController extends Controller
 
     public function store()
     {
-        $this->Pay(2, request('contact'), request('tracking_id'));
+        $res=$this->Pay(2, request('contact'), request('tracking_id'));
         return response()->json([
             'status' => true,
             'message' => 'Payment initiated successfully',
+            'data' => $res
         ], 200);
     }
 

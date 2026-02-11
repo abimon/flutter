@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('date');
             $table->string('time');
             $table->string('location');
-            $table->boolean('isPaid')->false();
+            $table->boolean('isPaid')->default(false);
+            $table->boolean('isPin')->default(false);
+            $table->boolean('isPicked')->default(false);
             $table->timestamps();
             $table->foreign('dustbin_id')->references('id')->on('dustbins')->cascadeOnDelete();
         });

@@ -14,7 +14,9 @@ class Pickup extends Model
         "date",
         "time",
         "location",
-        "isPaid"
+        "isPaid",
+        'isPin',
+        'isPicked'
     ];
     public function bin(){
         return $this->belongsTo(Dustbin::class);
