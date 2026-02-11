@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pickups', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dustbin_id');
+            $table->string('tracking_id')->unique();
             $table->string('date');
             $table->string('time');
             $table->string('location');
