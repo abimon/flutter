@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\DustbinController;
-use App\Http\Controllers\PaymentController;
+// use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PickupController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +28,7 @@ Route::controller(PickupController::class)->prefix('/pickup')->group(function ()
     Route::post('/store', 'store');
     Route::get('/show/{id}', 'show');
  });
- Route::controller(PaymentController::class)->prefix('/payments')->group(function () {
-    Route::post('/save', 'save');
-    Route::get('/pay/{id}/{bin_id}', 'pay');
- });
+//  Route::controller(PaymentController::class)->prefix('/payments')->group(function () {
+//     Route::post('/save', 'save');
+//     Route::get('/pay/{id}/{bin_id}', 'pay');
+//  });

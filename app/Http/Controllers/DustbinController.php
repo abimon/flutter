@@ -73,9 +73,12 @@ class DustbinController extends Controller
         return response()->json(['message' => "Level updated successfully with " . request('level') . ' from the device.'], 200);
     }
 
-    public function destroy(Dustbin $dustbin)
+    public function destroy($id)
     {
-        //
+        Dustbin::destroy($id);
+        return response()->json([
+            'message' => 'Dustbin deleted successfully'
+        ], 200);
     }
     public function sendSMS($phone, $message)
     {
