@@ -25,10 +25,10 @@ return [
     'venue_longitude' => '36.8219',
     
     // Bride Name
-    'bride_name' => 'Bride Name',
+    'bride_name' => 'Lydia',
     
     // Groom Name
-    'groom_name' => 'Groom Name',
+    'groom_name' => 'Caleb Nyabera',
     
     // Honeymoon Fund
     'honeymoon' => [
@@ -42,7 +42,7 @@ return [
     
     // Bride & Groom Details
     'bride' => [
-        'name' => 'Lydia Moraa',
+        'name' => 'Lydia',
         'photo' => '/images/bride.jpg',
     ],
     
@@ -53,15 +53,15 @@ return [
     
     // Wedding Theme Colors
     'colors' => [
-        'primary' => '#667eea',      // Indigo
-        'secondary' => '#764ba2',    // Purple
+        'primary' => '#EB1241',      // Indigo
+        'secondary' => '#0824C4',    // Purple
         'accent' => '#ff69b4',       // Optional accent color
     ],
     
     // Photo Gallery Settings
     'gallery' => [
         'auto_refresh' => true,
-        'refresh_interval' => 30000, // milliseconds (30 seconds)
+        // 'refresh_interval' => 30000, // milliseconds (30 seconds)
         'max_photos_display' => 12,
     ],
     

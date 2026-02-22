@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0824c4 0%, #eb1241 100%);
             min-height: 100vh;
             color: #333;
         }
@@ -69,10 +69,10 @@
         }
 
         .card h2 {
-            color: #667eea;
+            color: #0824c4;
             margin-bottom: 20px;
             font-size: 1.8em;
-            border-bottom: 3px solid #764ba2;
+            border-bottom: 3px solid #eb1241;
             padding-bottom: 15px;
         }
 
@@ -84,14 +84,14 @@
         }
 
         .info-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            background: linear-gradient(135deg, #0824c415 0%, #eb124115 100%);
             padding: 20px;
             border-radius: 10px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #0824c4;
         }
 
         .info-box h3 {
-            color: #667eea;
+            color: #0824c4;
             font-size: 0.9em;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -111,9 +111,57 @@
             margin-top: 5px;
         }
 
+        /* Bride & Groom Profiles */
+        .couple-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid #0824c4;
+            display: block;
+        }
+
+        .profile-name {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .profile-title {
+            font-size: 1em;
+            color: #eb1241;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         /* Progress Bar */
         .progress-section h3 {
-            color: #667eea;
+            color: #0824c4;
             margin-bottom: 15px;
             font-size: 1.2em;
         }
@@ -136,7 +184,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(90deg, #0824c4 0%, #eb1241 100%);
             width: 65%;
             transition: width 0.3s ease;
             display: flex;
@@ -160,12 +208,12 @@
             align-items: center;
             justify-content: center;
             padding: 40px;
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            background: linear-gradient(135deg, #0824c415 0%, #eb124115 100%);
             border-radius: 15px;
         }
 
         .qr-section h3 {
-            color: #667eea;
+            color: #0824c4;
             margin-bottom: 20px;
             font-size: 1.2em;
             text-align: center;
@@ -236,6 +284,20 @@
                 font-size: 2em;
             }
 
+            .couple-grid {
+                grid-template-columns: 1fr;
+                margin-bottom: 30px;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .profile-name {
+                font-size: 1.4em;
+            }
+
             .wedding-grid {
                 grid-template-columns: 1fr;
             }
@@ -281,6 +343,14 @@
         .card:nth-child(4) {
             animation-delay: 0.6s;
         }
+
+        .profile-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .profile-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
     </style>
 </head>
 
@@ -290,6 +360,23 @@
         <div class="header">
             <h1>💍 Our Wedding Day 💍</h1>
             <p>Join us for the celebration of love</p>
+        </div>
+
+        <!-- Bride & Groom Section -->
+        <div class="couple-grid">
+            <!-- Bride Card -->
+            <div class="profile-card">
+                <img src="{{ $brideInfo['photo']}}" alt="" class="profile-image" >
+                <div class="profile-name">{{ $brideInfo['name'] ?? 'Bride' }}</div>
+                <div class="profile-title">👰 The Bride</div>
+            </div>
+
+            <!-- Groom Card -->
+            <div class="profile-card">
+                <img src="{{ $groomInfo['photo']}}" alt="" class="profile-image">
+                <div class="profile-name">{{ $groomInfo['name'] ?? 'Groom' }}</div>
+                <div class="profile-title">🤵 The Groom</div>
+            </div>
         </div>
 
         <!-- Main Content Grid -->
@@ -318,7 +405,7 @@
             <div class="card">
                 <h2>💝 Support Us</h2>
                 <div class="progress-section">
-                    <h3>Honeymoon Fund Progress</h3>
+                    <h3>Fund Progress</h3>
                     <div class="progress-info">
                         <span>Raised</span>
                         <span class="currency">{{ $currency ?? 'KSH' }} {{ number_format($contributionCurrent) }}</span>
@@ -354,11 +441,11 @@
                 <h2>🎯 Quick Links</h2>
                 <div class="info-grid">
                     <button onclick="location.href='<?php echo route('wedding.upload-form') ?>'"
-                        style="padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; text-decoration: none;">
+                        style="padding: 15px; background: linear-gradient(135deg, #0824c4 0%, #eb1241 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; text-decoration: none;">
                         📤 Upload Photos
                     </button>
                     <a href="https://maps.google.com/?q={{ urlencode($venue_address) }}" target="_blank"
-                        style="padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; text-decoration: none;">
+                        style="padding: 15px; background: linear-gradient(135deg, #0824c4 0%, #eb1241 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; text-decoration: none;">
                         🗺️ Get Directions</a>
 
                 </div>
@@ -382,12 +469,12 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         // Auto-refresh gallery every 30 seconds to show new photos
         setInterval(() => {
             location.reload();
         }, 30000);
-    </script>
+    </script> -->
 </body>
 
 </html>
