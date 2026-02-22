@@ -138,7 +138,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            object-fit: cover;
+            object-fit:fill;
             margin: 0 auto 20px;
             border: 4px solid #0824c4;
             display: block;
