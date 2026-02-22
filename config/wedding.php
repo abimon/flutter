@@ -9,10 +9,10 @@
 return [
     
     // Wedding Date (YYYY-MM-DD format)
-    'date' => '2026-06-15',
+    'date' => '2026-04-05',
     
     // Wedding Time (12-hour format recommended)
-    'time' => '4:00 PM',
+    'time' => '10:00 AM',
     
     // Venue Name
     'venue_name' => 'Kijauri, Nyamira',
@@ -33,8 +33,8 @@ return [
     // Honeymoon Fund
     'honeymoon' => [
         'enabled' => true,
-        'goal' => 500000,        // In KES or your currency
-        'current' => 325000,     // Current amount raised
+        'goal' => 400000,        // In KES or your currency
+        'current' => 125000,     // Current amount raised
         'currency' => 'KSH',
         'destination' => 'Maldives',
         'description' => 'Help us create unforgettable memories on our honeymoon!',
