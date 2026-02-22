@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Wedding Day</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <style>
         * {
             margin: 0;
@@ -138,7 +139,7 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            object-fit:cover;
+            object-fit: cover;
             align-items: baseline;
             margin: 0 auto 20px;
             border: 4px solid #0824c4;
@@ -362,23 +363,20 @@
             <h1>💍 Our Wedding Day 💍</h1>
             <p>Join us for the celebration of love</p>
         </div>
-
-        <!-- Bride & Groom Section -->
-        <div class="couple-grid">
-            <!-- Bride Card -->
-            <div class="profile-card">
-                <img src="/storage/config/bride.jpeg" alt="" class="profile-image" >
+        <div class="row p-5 m-2 mb-3 profile-card">
+            <div class="col-6">
+                <img src="/storage/config/bride.jpeg" alt="" class="profile-image">
                 <div class="profile-name">{{ $brideInfo['name'] ?? 'Bride' }}</div>
                 <div class="profile-title">👰 The Bride</div>
             </div>
-
-            <!-- Groom Card -->
-            <div class="profile-card">
+            <div class="col-6">
                 <img src="/storage/config/groom.jpeg" alt="" class="profile-image">
                 <div class="profile-name">{{ $groomInfo['name'] ?? 'Groom' }}</div>
                 <div class="profile-title">🤵 The Groom</div>
             </div>
         </div>
+        <!-- Bride & Groom Section -->
+        
 
         <!-- Main Content Grid -->
         <div class="wedding-grid">
@@ -469,13 +467,8 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
-    <!-- <script>
-        // Auto-refresh gallery every 30 seconds to show new photos
-        setInterval(() => {
-            location.reload();
-        }, 30000);
-    </script> -->
 </body>
 
 </html>
