@@ -136,9 +136,10 @@
 
         .profile-image {
             width: 150px;
-            height: 160px;
+            height: 150px;
             border-radius: 50%;
             object-fit:cover;
+            align-items: baseline;
             margin: 0 auto 20px;
             border: 4px solid #0824c4;
             display: block;
