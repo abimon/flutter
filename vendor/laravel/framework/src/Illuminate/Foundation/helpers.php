@@ -792,14 +792,7 @@ if (! function_exists('resource_path')) {
 }
 
 if (! function_exists('response')) {
-    /**
-     * Return a new response from the application.
-     *
-     * @param  \Illuminate\Contracts\View\View|string|array|null  $content
-     * @param  int  $status
-     * @param  array  $headers
-     * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
-     */
+   
     function response($content = '', $status = 200, array $headers = [])
     {
         $factory = app(ResponseFactory::class);

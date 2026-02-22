@@ -95,7 +95,9 @@ class PickupController extends Controller
     {
         $pickup = Pickup::where('tracking_id', request('tracking_id'))->first();
         if ($pickup) {
-            if(request('isPicked')!=null){$pickup->isPicked = request('isPicked');}
+            if(request('isPicked')!=null){
+                $pickup->isPicked = request('isPicked');
+            }
             $pickup->update();
             return response()->json([
                 'status' => true,

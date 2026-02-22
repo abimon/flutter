@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * Wedding Page Configuration
+ * 
+ * Edit this file to customize your wedding page details
+ */
+
+return [
+    
+    // Wedding Date (YYYY-MM-DD format)
+    'date' => '2026-06-15',
+    
+    // Wedding Time (12-hour format recommended)
+    'time' => '4:00 PM',
+    
+    // Venue Name
+    'venue_name' => 'Grand Ballroom, Nairobi',
+    
+    // Venue Complete Address
+    'venue_address' => '123 Wedding Lane, Nairobi, Kenya',
+    
+    // Venue Coordinates (optional, for Google Maps)
+    'venue_latitude' => '-1.2921',
+    'venue_longitude' => '36.8219',
+    
+    // Bride Name
+    'bride_name' => 'Bride Name',
+    
+    // Groom Name
+    'groom_name' => 'Groom Name',
+    
+    // Honeymoon Fund
+    'honeymoon' => [
+        'enabled' => true,
+        'goal' => 500000,        // In KES or your currency
+        'current' => 325000,     // Current amount raised
+        'currency' => 'KSH',
+        'destination' => 'Maldives',
+        'description' => 'Help us create unforgettable memories on our honeymoon!',
+    ],
+    
+    // Bride & Groom Details
+    'bride' => [
+        'name' => 'Lydia Moraa',
+        'photo' => '/images/bride.jpg',
+    ],
+    
+    'groom' => [
+        'name' => 'Caleb Nyabera',
+        'photo' => '/images/groom.jpg',
+    ],
+    
+    // Wedding Theme Colors
+    'colors' => [
+        'primary' => '#667eea',      // Indigo
+        'secondary' => '#764ba2',    // Purple
+        'accent' => '#ff69b4',       // Optional accent color
+    ],
+    
+    // Photo Gallery Settings
+    'gallery' => [
+        'auto_refresh' => true,
+        'refresh_interval' => 30000, // milliseconds (30 seconds)
+        'max_photos_display' => 12,
+    ],
+    
+    // Upload Settings
+    'upload' => [
+        'max_file_size' => 10240,    // KB (10MB)
+        'allowed_formats' => ['jpeg', 'png', 'jpg', 'gif'],
+        'storage_path' => 'wedding-photos',
+    ],
+    
+    // QR Code Settings
+    'qr_code' => [
+        'size' => 300,         // pixels
+        'error_correction' => 'M', // L, M, Q, H
+    ],
+    
+];
