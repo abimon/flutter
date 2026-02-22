@@ -136,9 +136,9 @@
 
         .profile-image {
             width: 150px;
-            height: 150px;
+            height: 160px;
             border-radius: 50%;
-            object-fit:fill;
+            object-fit:cover;
             margin: 0 auto 20px;
             border: 4px solid #0824c4;
             display: block;
