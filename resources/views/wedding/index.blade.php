@@ -366,12 +366,12 @@
         <div class="row p-5 m-2 mb-3 profile-card">
             <div class="col-6">
                 <img src="/storage/config/bride.jpeg" alt="" class="profile-image">
-                <div class="profile-name">{{ $brideInfo['name'] ?? 'Bride' }}</div>
+                <div class="profile-name" style="text-transform:uppercase;">{{ $brideInfo['name'] ?? 'Bride' }}</div>
                 <div class="profile-title">👰 The Bride</div>
             </div>
             <div class="col-6">
                 <img src="/storage/config/groom.jpeg" alt="" class="profile-image">
-                <div class="profile-name">{{ $groomInfo['name'] ?? 'Groom' }}</div>
+                <div class="profile-name" style="text-transform:uppercase;">{{ $groomInfo['name'] ?? 'Groom' }}</div>
                 <div class="profile-title">🤵 The Groom</div>
             </div>
         </div>
