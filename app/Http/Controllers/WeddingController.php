@@ -25,7 +25,7 @@ class WeddingController extends Controller
             $photos = array_map(function($file) {
                 return Storage::disk('public')->url($file);
             }, $files);
-            return $photos;
+            // return $photos;
         }
         
         // Get config values
