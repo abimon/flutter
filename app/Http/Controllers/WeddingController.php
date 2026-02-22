@@ -23,7 +23,9 @@ class WeddingController extends Controller
             // Sort by newest first
             rsort($files);
             $photos = array_map(function($file) {
-                return Storage::disk('public')->url($file);
+                $path = Storage::disk('public')->url($file);
+                $image= explode('/',$path);
+                return '/storage/wedding-photos/' . end($image);
             }, $files);
             // return $photos;
         }
