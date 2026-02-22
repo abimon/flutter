@@ -366,14 +366,14 @@
         <div class="couple-grid">
             <!-- Bride Card -->
             <div class="profile-card">
-                <img src="/storage/config/bride.png" alt="" class="profile-image" >
+                <img src="/storage/config/bride.webp" alt="" class="profile-image" >
                 <div class="profile-name">{{ $brideInfo['name'] ?? 'Bride' }}</div>
                 <div class="profile-title">👰 The Bride</div>
             </div>
 
             <!-- Groom Card -->
             <div class="profile-card">
-                <img src="/storage/config/groom.png" alt="" class="profile-image">
+                <img src="/storage/config/groom.webp" alt="" class="profile-image">
                 <div class="profile-name">{{ $groomInfo['name'] ?? 'Groom' }}</div>
                 <div class="profile-title">🤵 The Groom</div>
             </div>
