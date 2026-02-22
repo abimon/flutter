@@ -15,20 +15,20 @@ return [
     'time' => '4:00 PM',
     
     // Venue Name
-    'venue_name' => 'Grand Ballroom, Nairobi',
+    'venue_name' => 'Kijauri, Nyamira',
     
     // Venue Complete Address
-    'venue_address' => '123 Wedding Lane, Nairobi, Kenya',
+    'venue_address' => 'Victory Church, Kijauri',
     
     // Venue Coordinates (optional, for Google Maps)
     'venue_latitude' => '-1.2921',
     'venue_longitude' => '36.8219',
     
     // Bride Name
-    'bride_name' => 'Lydia',
+    'bride_name' => 'Lydia Moraa Ongera',
     
     // Groom Name
-    'groom_name' => 'Caleb Nyabera',
+    'groom_name' => 'Caleb Nyabera Kefa',
     
     // Honeymoon Fund
     'honeymoon' => [
@@ -42,13 +42,13 @@ return [
     
     // Bride & Groom Details
     'bride' => [
-        'name' => 'Lydia',
-        'photo' => '/images/bride.jpg',
+        'name' => 'Lydia Moraa Ongera',
+        'photo' => '/storage/config/bride.jpeg',
     ],
     
     'groom' => [
-        'name' => 'Caleb Nyabera',
-        'photo' => '/images/groom.jpg',
+        'name' => 'Caleb Nyabera Kefa',
+        'photo' => '/storage/config/groom.jpeg',
     ],
     
     // Wedding Theme Colors
