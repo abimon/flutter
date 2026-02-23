@@ -19,10 +19,10 @@ return [
     
     // Venue Complete Address
     'venue_address' => 'Valley Gate SDA Church, Amakara',
-    
-    // Venue Coordinates (optional, for Google Maps)
-    'venue_latitude' => '-1.2921',
-    'venue_longitude' => '36.8219',
+
+    // Venue Coordinates (optional, for Google Maps) 0.742497, 35.024424
+    'venue_latitude' => '-0.742497',
+    'venue_longitude' => '35.024424',
     
     // Bride Name
     'bride_name' => 'Lydia Moraa Ongera',
