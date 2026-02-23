@@ -385,7 +385,7 @@
                     </thead>
                     <tbody>
                         @foreach($assignments as $assign)
-                        <tr>
+                        <tr class="text-start">
                             <td>{{ $assign->contact_name }}</td>
                             <td>{{ $assign->contact_phone }}</td>
                         </tr>
