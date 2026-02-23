@@ -13,5 +13,6 @@ class CallAssignment extends Model
         'caller_phone',
         'contact_name',
         'contact_phone',
+        'response',
     ];
 }

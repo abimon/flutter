@@ -468,8 +468,9 @@ class WeddingController extends Controller
         $result = $this->partition($contacts, $n);
         foreach ($result as $index => $group) {
             foreach ($group as $contact) {
-                CallAssignment::create([
+                CallAssignment::updateOrCreate([
                     'contact_phone' => $contact[0],
+                ], [
                     'contact_name' => $contact[1],
                     'caller_phone' => $callers[$index]
                 ]);
@@ -496,5 +497,17 @@ class WeddingController extends Controller
         }
 
         return $partition;
+    }
+    function updateCallResponse($id)
+    {
+        $assignment = CallAssignment::findOrFail($id);
+        if(request('response') != null){
+            $assignment->response = request('response');
+        }
+        if(request('contact_name') != null){
+            $assignment->contact_name = request('contact_name');
+        }
+        $assignment->update();
+        return response()->json(['success' => true, 'message' => 'Response updated successfully']);
     }
 }

@@ -27,6 +27,7 @@ Route::controller(WeddingController::class)->prefix('wedding')->group(function (
     // call center access – phone lookup form and results
     Route::match(['get','post'], '/call-center', 'callCenter')->name('wedding.call-center');
     Route::get('/assign', 'assignCallers');
+    Route::post('/updateCallResponse/{id}', 'updateCallResponse')->name('wedding.update-call-response');
 });
 Route::middleware('auth')->group(function () {
     Route::resources([

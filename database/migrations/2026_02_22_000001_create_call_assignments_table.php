@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('caller_phone');
             $table->string('contact_name')->nullable();
             $table->string('contact_phone');
+            $table->text('response')->nullable();
             $table->timestamps();
 
             $table->index('caller_phone');

@@ -359,7 +359,7 @@
 
 <body>
     <div class="" style="height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center;">
-        <div class="container profile-card w-50 m-auto">
+        <div class="container profile-card w-75 m-auto">
             <h1>✨ Wedding Call Center</h1>
 
             <form method="POST" action="{{ route('wedding.call-center') }}" class="mb-4 profile-card">
@@ -381,14 +381,34 @@
                         <tr>
                             <th>Name</th>
                             <th>Phone</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($assignments as $assign)
-                        <tr class="text-start">
-                            <td>{{ $assign->contact_name }}</td>
-                            <td><a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a></td>
-                        </tr>
+                        <form method="POST" action="/wedding/updateCallResponse/{{ $assign->id }}">
+                            @csrf
+                            <div class="text-start row">
+                                <div class="col-md-5 mb-2">
+                                    <div class="mb-2">@if($assign->contact_name ==null)
+                                        <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
+                                        @else
+                                        {{ $assign->contact_name }}
+                                        @endif
+                                    </div>
+                                    <a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a>
+                                </div>
+                                <div class="col-md-7 mb-2">
+                                    <div class="mb-2">
+                                        <textarea name="response" class="form-control" placeholder="Enter call response...">{{ $assign->response }}</textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-sm btn-success">Update</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <hr>
                         @endforeach
                     </tbody>
                 </table>
