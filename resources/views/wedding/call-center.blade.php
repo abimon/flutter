@@ -365,8 +365,8 @@
             <form method="POST" action="{{ route('wedding.call-center') }}" class="mb-4 profile-card">
                 @csrf
                 <div class="mb-3">
-                    <label for="phone" class="form-label">Enter your phone number</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="e.g. +1234567890" value="{{ old('phone', $phone ?? '') }}">
+                    <label for="phone" class="form-label">Enter your username</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="e.g. Lydia Caleb" value="{{ old('phone', $phone ?? '') }}">
                     @error('phone')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Lookup</button>
