@@ -136,7 +136,7 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
-        
+
         .profile-card:nth-child(1) {
             animation-delay: 0.1s;
         }
@@ -166,42 +166,31 @@
             @if($assignments && $assignments->count())
             <div class="info">
                 <h4>Contacts to call for {{ $phone }}</h4>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Update</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($assignments as $assign)
-                        <form method="POST" action="/wedding/updateCallResponse/{{ $assign->id }}">
-                            @csrf
-                            <div class="text-start row">
-                                <div class="col-md-5 mb-2">
-                                    <div class="mb-2">@if($assign->contact_name ==null)
-                                        <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
-                                        @else
-                                        {{ $assign->contact_name }}
-                                        @endif
-                                    </div>
-                                    <a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a>
-                                </div>
-                                <div class="col-md-7 mb-2">
-                                    <div class="mb-2">
-                                        <textarea name="response" class="form-control" placeholder="Enter call response...">{{ $assign->response }}</textarea>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-sm btn-success">Update</button>
-                                    </div>
-                                </div>
+                @foreach($assignments as $assign)
+                <form method="POST" action="/wedding/updateCallResponse/{{ $assign->id }}">
+                    @csrf
+                    <div class="text-start row">
+                        <div class="col-md-5 mb-2">
+                            <div class="mb-2">@if($assign->contact_name ==null)
+                                <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
+                                @else
+                                {{ $assign->contact_name }}
+                                @endif
                             </div>
-                        </form>
-                        <hr>
-                        @endforeach
-                    </tbody>
-                </table>
+                            <a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a>
+                        </div>
+                        <div class="col-md-7 mb-2">
+                            <div class="mb-2">
+                                <textarea name="response" class="form-control" placeholder="Enter call response...">{{ $assign->response }}</textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-sm btn-success">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+                @endforeach
             </div>
             @else
             <div class="alert alert-warning">No call assignments found for that number.</div>
