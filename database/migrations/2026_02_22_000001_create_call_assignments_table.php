@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('call_assignments', function (Blueprint $table) {
             $table->id();
             $table->string('caller_phone');
-            $table->string('contact_name');
+            $table->string('contact_name')->nullable();
             $table->string('contact_phone');
             $table->timestamps();
 

@@ -19,15 +19,14 @@ Route::get('/masterguide', function () {
 });
 
 // Wedding Routes
-Route::prefix('wedding')->group(function () {
-    Route::get('/', [WeddingController::class, 'index'])->name('wedding.index');
-    Route::get('/upload', [WeddingController::class, 'uploadForm'])->name('wedding.upload-form');
-    Route::post('/upload', [WeddingController::class, 'upload'])->name('wedding.upload');
-    Route::get('/progress', [WeddingController::class, 'getProgress'])->name('wedding.progress');
-
+Route::controller(WeddingController::class)->prefix('wedding')->group(function () {
+    Route::get('/', 'index')->name('wedding.index');
+    Route::get('/upload', 'uploadForm')->name('wedding.upload-form');
+    Route::post('/upload', 'upload')->name('wedding.upload');
+    Route::get('/progress', 'getProgress')->name('wedding.progress');
     // call center access – phone lookup form and results
-    Route::match(['get','post'], '/call-center', [WeddingController::class, 'callCenter'])
-        ->name('wedding.call-center');
+    Route::match(['get','post'], '/call-center', 'callCenter')->name('wedding.call-center');
+    Route::get('/assign', 'assignCallers');
 });
 Route::middleware('auth')->group(function () {
     Route::resources([
