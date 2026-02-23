@@ -1,206 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.wedding', ['title' => 'Wedding Call Center Dashboard'])
+@section('content')
+<div class="" style="height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center;">
+    <div class="container profile-card w-md-75 m-auto">
+        <h1>✨ Wedding Call Center</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Call Center</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        <form method="POST" action="{{ route('wedding.call-center') }}" class="mb-4 profile-card">
+            @csrf
+            <div class="mb-3">
+                <label for="phone" class="form-label">Enter your username</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="e.g. Lydia Caleb" value="{{ old('phone', $phone ?? '') }}">
+                @error('phone')<div class="text-danger">{{ $message }}</div>@enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Lookup</button>
+        </form>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0824c4 0%, #eb1241 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header Section */
-        .header {
-            text-align: center;
-            color: white;
-            padding: 40px 20px;
-            margin-bottom: 40px;
-        }
-
-        .header h1 {
-            font-size: 3.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.95;
-        }
-
-        /* Main Grid */
-        .wedding-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        /* Card Styles */
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .card h2 {
-            color: #0824c4;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            border-bottom: 3px solid #eb1241;
-            padding-bottom: 15px;
-        }
-
-        /* Date & Venue */
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, #0824c415 0%, #eb124115 100%);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #0824c4;
-        }
-
-        .info-box h3 {
-            color: #0824c4;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .info-box p {
-            font-size: 1.3em;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .venue-address {
-            font-size: 0.95em !important;
-            color: #666 !important;
-            font-weight: 400 !important;
-            margin-top: 5px;
-        }
-
-        /* Bride & Groom Profiles */
-        .couple-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .profile-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        .profile-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        }
-
-
-        .profile-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .profile-card:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="" style="height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center;">
-        <div class="container profile-card w-md-75 m-auto">
-            <h1>✨ Wedding Call Center</h1>
-
-            <form method="POST" action="{{ route('wedding.call-center') }}" class="mb-4 profile-card">
+        @if(isset($assignments))
+        @if($assignments && $assignments->count())
+        <div class="info">
+            <h4>Contacts to call for {{ $phone }}</h4>
+            @foreach($assignments as $assign)
+            <form method="POST" action="/wedding/updateCallResponse/{{ $assign->id }}">
                 @csrf
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Enter your username</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="e.g. Lydia Caleb" value="{{ old('phone', $phone ?? '') }}">
-                    @error('phone')<div class="text-danger">{{ $message }}</div>@enderror
-                </div>
-                <button type="submit" class="btn btn-primary">Lookup</button>
-            </form>
-
-            @if(isset($assignments))
-            @if($assignments && $assignments->count())
-            <div class="info">
-                <h4>Contacts to call for {{ $phone }}</h4>
-                @foreach($assignments as $assign)
-                <form method="POST" action="/wedding/updateCallResponse/{{ $assign->id }}">
-                    @csrf
-                    <div class="text-start row">
-                        <div class="col-md-5 mb-2">
-                            <div class="mb-2">@if($assign->contact_name ==null)
-                                <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
-                                @else
-                                {{ $assign->contact_name }}
-                                @endif
-                            </div>
-                            <a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a>
+                <div class="text-start row">
+                    <div class="col-md-5 mb-2">
+                        <div class="mb-2">@if($assign->contact_name ==null)
+                            <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
+                            @else
+                            {{ $assign->contact_name }}
+                            @endif
                         </div>
-                        <div class="col-md-7 mb-2">
-                            <div class="mb-2">
-                                <textarea name="response" class="form-control" placeholder="Enter call response...">{{ $assign->response }}</textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-success">Update</button>
-                            </div>
+                        <a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a>
+                    </div>
+                    <div class="col-md-7 mb-2">
+                        <div class="mb-2">
+                            <textarea name="response" class="form-control" placeholder="Enter call response...">{{ $assign->response }}</textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-sm btn-success">Update</button>
                         </div>
                     </div>
-                </form>
-                <hr>
-                @endforeach
-            </div>
-            @else
-            <div class="alert alert-warning">No call assignments found for that number.</div>
-            @endif
-            @endif
-
-            <a href="{{ route('wedding.index') }}">← Back to Wedding Page</a>
+                </div>
+            </form>
+            <hr>
+            @endforeach
         </div>
+        @else
+        <div class="alert alert-warning">No call assignments found for that number.</div>
+        @endif
+        @endif
+
+        <a href="{{ route('wedding.index') }}">← Back to Wedding Page</a>
     </div>
-
-</body>
-
-</html>
+</div>
+@endsection
