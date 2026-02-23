@@ -246,6 +246,9 @@ Tests:
 - [ ] `resources/views/wedding/upload-form.blade.php` exists
 - [ ] `config/wedding.php` exists
 - [ ] `routes/web.php` updated with wedding routes
+- [ ] call center route (`/wedding/call-center`) works and requires phone number
+- [ ] contributions page shows list to authenticated users
+- [ ] only user with role "treasurer" can add/edit/delete contributions
 
 ### Storage Directory
 - [ ] `storage/app/public/` directory exists

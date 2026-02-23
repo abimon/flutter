@@ -4,6 +4,7 @@
 A beautiful single-page wedding website created with Laravel that includes:
 - ✅ Wedding date and venue information
 - ✅ Support contribution progress tracker
+- 🛠️ Added contribution management interface for treasurer (`/contributions`)
 - ✅ Bride and groom photo gallery
 - ✅ QR code for photo uploads
 - ✅ Mobile-friendly upload form with camera support

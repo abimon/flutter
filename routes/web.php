@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\APIContoller;
+use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\WeddingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,13 @@ Route::prefix('wedding')->group(function () {
     Route::get('/upload', [WeddingController::class, 'uploadForm'])->name('wedding.upload-form');
     Route::post('/upload', [WeddingController::class, 'upload'])->name('wedding.upload');
     Route::get('/progress', [WeddingController::class, 'getProgress'])->name('wedding.progress');
+
+    // call center access – phone lookup form and results
+    Route::match(['get','post'], '/call-center', [WeddingController::class, 'callCenter'])
+        ->name('wedding.call-center');
+});
+Route::middleware('auth')->group(function () {
+    Route::resources([
+        'contributions' => ContributionController::class,
+    ]);
 });

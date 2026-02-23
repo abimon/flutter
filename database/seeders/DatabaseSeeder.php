@@ -20,5 +20,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // -- sample call center data (use php artisan db:seed to populate)
+        \App\Models\CallAssignment::factory()->count(5)->create();
+
+        // -- sample contributions
+        \App\Models\Contribution::factory()->count(3)->create();
     }
 }

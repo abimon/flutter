@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\CallAssignment;
+use App\Models\Contribution;
 
 class WeddingController extends Controller
 {
@@ -41,7 +43,7 @@ class WeddingController extends Controller
             'venue' => $config['venue_name'],
             'venue_address' => $config['venue_address'],
             'contributionGoal' => $config['honeymoon']['goal'],
-            'contributionCurrent' => $config['honeymoon']['current'],
+            'contributionCurrent' => Contribution::sum('amount'),
             'currency' => $config['honeymoon']['currency'],
             'brideInfo' => $config['bride'],
             'groomInfo' => $config['groom'],
@@ -97,6 +99,29 @@ class WeddingController extends Controller
             'goal' => $goal,
             'current' => $current,
             'percentage' => round(($current / $goal) * 100, 2)
+        ]);
+    }
+
+    /**
+     * Display call center form and results based on phone number
+     */
+    public function callCenter(Request $request)
+    {
+        // if the form was submitted, look up assignments
+        $assignments = null;
+        $phone = null;
+
+        if ($request->isMethod('post')) {
+            $phone = $request->validate([
+                'phone' => 'required|string'
+            ])['phone'];
+
+            $assignments = CallAssignment::where('caller_phone', $phone)->get();
+        }
+
+        return view('wedding.call-center', [
+            'assignments' => $assignments,
+            'phone' => $phone,
         ]);
     }
 }
