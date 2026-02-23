@@ -508,6 +508,6 @@ class WeddingController extends Controller
             $assignment->contact_name = request('contact_name');
         }
         $assignment->update();
-        return response()->json(['success' => true, 'message' => 'Response updated successfully']);
+        return back()->with('success' , 'Response updated successfully');
     }
 }
