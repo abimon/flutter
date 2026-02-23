@@ -15,10 +15,10 @@ return [
     'time' => '10:00 AM',
     
     // Venue Name
-    'venue_name' => 'Kijauri, Nyamira',
+    'venue_name' => 'Amakara, Nyamira',
     
     // Venue Complete Address
-    'venue_address' => 'Victory Church, Kijauri',
+    'venue_address' => 'Valley Gate SDA Church, Amakara',
     
     // Venue Coordinates (optional, for Google Maps)
     'venue_latitude' => '-1.2921',
