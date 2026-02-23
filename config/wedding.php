@@ -18,7 +18,7 @@ return [
     'venue_name' => 'Amakara, Nyamira',
     
     // Venue Complete Address
-    'venue_address' => 'Valley Gate SDA Church, Amakara',
+    'venue_address' => 'SDA Church Valley, Amakara',
 
     // Venue Coordinates (optional, for Google Maps) 0.742497, 35.024424
     'venue_latitude' => '-0.742497',
