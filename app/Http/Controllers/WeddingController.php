@@ -116,7 +116,11 @@ class WeddingController extends Controller
                 'phone' => 'required|string'
             ])['phone'];
 
-            $assignments = CallAssignment::where('caller_phone', $phone)->get();
+            if($phone=='all'){
+                $assignments = CallAssignment::all();
+            } else {
+                $assignments = CallAssignment::where('caller_phone', $phone)->get();
+            }
         }
 
         return view('wedding.call-center', [

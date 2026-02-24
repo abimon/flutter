@@ -23,11 +23,14 @@
                 @csrf
                 <div class="text-start row">
                     <div class="col-md-5 mb-2">
-                        <div class="mb-2">@if($assign->contact_name ==null)
-                            <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
-                            @else
-                            {{ $assign->contact_name }}
-                            @endif
+                        <div class="mb-2">
+                            <p> {{ $loop->iteration }}.
+                                @if($assign->contact_name ==null)
+                                <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
+                                @else
+                                {{ $assign->contact_name }}
+                                @endif
+                            </p>
                         </div>
                         <a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a>
                     </div>
