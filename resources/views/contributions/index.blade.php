@@ -7,7 +7,7 @@
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    @if(auth()->user()->role === 'treasurer')
+    @if(auth()->user()->role === 'treasurer'||auth()->user()->role === 'Admin')
     <button data-bs-toggle="modal" data-bs-target="#contributionModal" class="btn btn-primary mb-3">Add Contribution</button>
     @endif
 
@@ -20,7 +20,7 @@
                 <th>Payment Method</th>
                 <th>Status</th>
                 <th>Added by</th>
-                @if(auth()->user()->role === 'treasurer')
+                @if(auth()->user()->role === 'treasurer'||auth()->user()->role === 'Admin')
                 <th>Actions</th>
                 @endif
             </tr>
@@ -45,7 +45,7 @@
                         View
                     </button>
                 </td>
-                @if(auth()->user()->role === 'treasurer')
+                @if(auth()->user()->role === 'treasurer' ||auth()->user()->role === 'Admin')
                 <td>
                     <button class="btn btn-sm btn-secondary edit-btn"
                         data-id="{{ $c->id }}"
