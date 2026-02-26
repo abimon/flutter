@@ -33,7 +33,7 @@
 
                             </p>
                         </div>
-                        {{ App\Models\Contribution::where('phone', $assign->contact_phone)->exists()?'Given Already':'Not Given' }}
+                        {{ (App\Models\Contribution::where('phone', $assign->contact_phone)->exists())|| App\Models\Contribution::where('contributor_name', $assign->contact_name)->exists()?'Given Already':'Not Given' }}
                         <a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a>
                     </div>
                     <div class="col-md-7 mb-2">
