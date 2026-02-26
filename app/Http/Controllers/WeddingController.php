@@ -107,6 +107,10 @@ class WeddingController extends Controller
      */
     public function callCenter(Request $request)
     {
+        foreach(CallAssignment::where('contact_name',null)->get() as $assignment){
+            $assignment->contact_name = Contribution::where('phone',$assignment->caller_phone)->first()->name;
+            $assignment->save();
+        }
         // if the form was submitted, look up assignments
         $assignments = null;
         $phone = null;
