@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('contributions', function (Blueprint $table) {
             $table->id();
             $table->string('contributor_name');
+            $table->string('phone')->nullable();
             $table->integer('amount');
             $table->string('payment_method');
             $table->string('payment_status');

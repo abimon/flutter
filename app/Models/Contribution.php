@@ -11,10 +11,12 @@ class Contribution extends Model
 
     protected $fillable = [
         'contributor_name',
+        'phone',
         'amount',
         'payment_method',
         'payment_status',
         'description',
+        'status',
         'added_by',
     ];
 
