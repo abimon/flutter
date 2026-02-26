@@ -15,10 +15,10 @@
         <thead>
             <tr>
                 <th>Date</th>
+                <th>Contributor</th>
                 <th>Amount</th>
-                <th>Category</th>
+                <th>Payment Method</th>
                 <th>Status</th>
-                <th>Description</th>
                 <th>Added by</th>
                 @if(auth()->user()->role === 'treasurer')
                 <th>Actions</th>
@@ -29,10 +29,10 @@
             @foreach($contributions as $c)
             <tr>
                 <td>{{ $c->created_at->format('Y-m-d') }}</td>
+                <th>{{ $c->contributor_name }}</th>
                 <td>{{ number_format($c->amount) }}</td>
                 <td class="text-capitalize">{{ $c->payment_method }}</td>
                 <td>{{ $c->payment_status }}</td>
-                <td>{{ $c->description }}</td>
                 <td>{{ optional($c->addedBy)->name }}</td>
                 <td>
                     <button class="btn btn-sm btn-info view-btn"
