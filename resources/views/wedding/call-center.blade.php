@@ -18,35 +18,41 @@
         @if($assignments && $assignments->count())
         <div class="info">
             <h4>Contacts to call for {{ $phone }}</h4>
+            <!-- search -->
+            <div class="mb-3">
+                <input type="text" id="serchInput" class="form-control" placeholder="Search by contact..." onkeyup="search()">
+            </div>
             @foreach($assignments as $assign)
-            <form method="POST" action="/wedding/updateCallResponse/{{ $assign->id }}">
-                @csrf
-                <div class="text-start row">
-                    <div class="col-md-5 mb-2">
-                        <div class="mb-2">
-                            <p> {{ $loop->iteration }}.
-                                @if($assign->contact_name ==null)
-                                <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
-                                @else
-                                {{ $assign->contact_name }}
-                                @endif
+            <div class="users">
+                <form method="POST" action="/wedding/updateCallResponse/{{ $assign->id }}">
+                    @csrf
+                    <div class="text-start row">
+                        <div class="col-md-5 mb-2 names">
+                            <div class="mb-2">
+                                <p class=""> {{ $loop->iteration }}.
+                                    @if($assign->contact_name ==null)
+                                    <input type="text" name="contact_name" placeholder="Enter contact name..." class="form-control">
+                                    @else
+                                    {{ $assign->contact_name }}
+                                    @endif
 
-                            </p>
+                                </p>
+                            </div>
+                            {{ (App\Models\Contribution::where('phone', $assign->contact_phone)->exists())|| App\Models\Contribution::where('contributor_name', $assign->contact_name)->exists()?'Given Already':'Not Given' }}
+                            <a href="tel:{{ $assign->contact_phone }}" class="contacts">{{ $assign->contact_phone }}</a>
                         </div>
-                        {{ (App\Models\Contribution::where('phone', $assign->contact_phone)->exists())|| App\Models\Contribution::where('contributor_name', $assign->contact_name)->exists()?'Given Already':'Not Given' }}
-                        <a href="tel:{{ $assign->contact_phone }}">{{ $assign->contact_phone }}</a>
+                        <div class="col-md-7 mb-2">
+                            <div class="mb-2">
+                                <textarea name="response" class="form-control" placeholder="Enter call response...">{{ $assign->response }}</textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-sm btn-success">Update</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-7 mb-2">
-                        <div class="mb-2">
-                            <textarea name="response" class="form-control" placeholder="Enter call response...">{{ $assign->response }}</textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-sm btn-success">Update</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <hr>
+                </form>
+                <hr>
+            </div>
             @endforeach
         </div>
         @else
@@ -57,4 +63,24 @@
         <a href="{{ route('wedding.index') }}">← Back to Wedding Page</a>
     </div>
 </div>
+<script>
+    function search() {
+        // Declare variables
+        var input, filter, users, names, td, i, txtValue, contValue;
+        input = document.getElementById("serchInput");
+        filter = input.value.toUpperCase();
+        names = document.getElementsByClassName("names");
+        users = document.getElementsByClassName("users");
+        contact = document.getElementsByClassName("contacts");
+        for (i = 0; i < names.length; i++) {
+            txtValue = names[i].textContent || names[i].innerText;
+            // contValue = contact[i].innerText || contact[i].textContent;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                users[i].style.display = "";
+            } else {
+                users[i].style.display = "none";
+            }
+        }
+    }
+</script>
 @endsection
