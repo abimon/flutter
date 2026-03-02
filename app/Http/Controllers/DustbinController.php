@@ -129,7 +129,7 @@ class DustbinController extends Controller
         if(!$dustbin){
             return response()->json([
                 'message' => 'Dustbin not found'
-            ], 404);
+            ], 200);
         }
         return response()->json([
             'status' => true,
