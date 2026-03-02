@@ -11,6 +11,7 @@ class Dustbin extends Model
     protected $fillable = [
         'user_id',
         'dustbin_no',
+        'ip',
         'level',
         'depth'
     ];

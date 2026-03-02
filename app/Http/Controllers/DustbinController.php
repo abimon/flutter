@@ -12,9 +12,9 @@ class DustbinController extends Controller
 
     public function index()
     {
-        if(Auth::user()->role == 'Admin'){
+        if (Auth::user()->role == 'Admin') {
             $dustbins = Dustbin::join('users', 'users.id', '=', 'dustbins.user_id')->select('dustbins.*', 'users.name',)->get();
-        }else{
+        } else {
             $id = Auth()->user()->id;
             $dustbins = Dustbin::where('users.id', $id)->join('users', 'users.id', '=', 'dustbins.user_id')->select('dustbins.*', 'users.name',)->get();
         }
@@ -58,17 +58,22 @@ class DustbinController extends Controller
     {
 
         $bin = Dustbin::where('dustbin_no', request('dustbin_no'))->first();
-        if(request('level')!=null){$bin->level = ceil(((($bin->depth - request('level')) / $bin->depth) * 100));
+        if (request('level') != null) {
+            $bin->level = ceil(((($bin->depth - request('level')) / $bin->depth) * 100));
+            if ($bin->level >= 80) {
+                $phone = $bin->user->phone;
+                $message = "Waste-bin no: " . $bin->dustbin_no . " is full. Please empty it.";
+                $this->sendSMS($phone, $message);
+            } else if ($bin->level >= 60) {
+                $phone = $bin->user->phone;
+                $message = "Waste-bin no: " . $bin->dustbin_no . " is almost full. Please check it and schedule its pickup.";
+                $this->sendSMS($phone, $message);
+            }
+        }
+        if (request('ip') != null) {
+            $bin->ip = request('ip');
+        }
         $bin->update();
-        if ($bin->level >= 80) {
-            $phone = $bin->user->phone;
-            $message = "Waste-bin no: " . $bin->dustbin_no . " is full. Please empty it.";
-            $this->sendSMS($phone, $message);
-        } else if ($bin->level >= 60) {
-            $phone = $bin->user->phone;
-            $message = "Waste-bin no: " . $bin->dustbin_no . " is almost full. Please check it and schedule its pickup.";
-            $this->sendSMS($phone, $message);
-        }}
 
         return response()->json(['message' => "Level updated successfully with " . request('level') . ' from the device.'], 200);
     }
@@ -80,7 +85,7 @@ class DustbinController extends Controller
                 'status' => false,
                 'message' => 'Password does not match with our record.',
             ], 401);
-        }else{
+        } else {
             Dustbin::destroy($id);
             return response()->json([
                 'message' => 'Dustbin deleted successfully'
@@ -116,5 +121,15 @@ class DustbinController extends Controller
         // curl_close($curl);
         $res = json_decode($response);
         return $res->status_code;
+    }
+
+    public function getDustbin($id)
+    {
+        $dustbin = Dustbin::where('dustbin_no', $id)->first();
+        return response()->json([
+            'status' => true,
+            'message' => 'Dustbin retrieved successfully',
+            'data' => $dustbin->depth
+        ], 200);
     }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('dustbin_no')->unique();
+            $table->string('ip')->nullable();
             $table->integer('depth');
             $table->integer('level');
             $table->timestamps();
