@@ -123,7 +123,7 @@ class DustbinController extends Controller
         return $res->status_code;
     }
 
-    public function getDustbin($id)
+    public function getDustbinDepth($id)
     {
         $dustbin = Dustbin::where('dustbin_no', $id)->first();
         return response()->json([
