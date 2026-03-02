@@ -131,10 +131,6 @@ class DustbinController extends Controller
                 'message' => 'Dustbin not found'
             ], 200);
         }
-        return response()->json([
-            'status' => true,
-            'message' => 'Dustbin retrieved successfully',
-            'data' => $dustbin->depth
-        ], 200);
+        return $dustbin->depth;
     }
 }
