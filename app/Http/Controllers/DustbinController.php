@@ -123,9 +123,14 @@ class DustbinController extends Controller
         return $res->status_code;
     }
 
-    public function getDustbinDepth($id)
+    public function getDustbinDepth()
     {
-        $dustbin = Dustbin::where('dustbin_no', $id)->first();
+        $dustbin = Dustbin::where('dustbin_no', request('dustbin_no'))->first();
+        if(!$dustbin){
+            return response()->json([
+                'message' => 'Dustbin not found'
+            ], 404);
+        }
         return response()->json([
             'status' => true,
             'message' => 'Dustbin retrieved successfully',
